@@ -13,7 +13,7 @@ module.exports = {
       {
         spotId: 1,
         userId: 4,
-        review: `The Kamado Family Home is a charming little house that offers a glimpse into life in the countryside. The location is great, with easy access to the nearby town and plenty of beautiful scenery in the surrounding mountains. The only downside is that the house has a sad history, as it is where Tanjiro's family met their untimely demise.`,
+        review: `This is a charming little house that offers a glimpse into life in the countryside. The location is great, with plenty of beautiful scenery in the surrounding mountains. Unfortunately it is also where Tanjiro's family met their untimely demise.`,
         stars: 3,
       },
       {
@@ -25,19 +25,19 @@ module.exports = {
       {
         spotId: 3,
         userId: 2,
-        review: `Literally a cave. I don't know what I expected but I want to go home.`,
+        review: `Literally a cave. I don't know what I expected but I want to go home, this is scary!`,
         stars: 1,
       },
       {
         spotId: 4,
         userId: 1,
-        review: `The Tomioka Family Dojo is a great choice for anyone interested in learning more about the Water Breathing techniques. The dojo is spacious and well-equipped, with plenty of room for both individual and group training. Additionally, the location is great, with easy access to the nearby town and plenty of beautiful scenery in the surrounding area. Overall, I would highly recommend this location to anyone looking to improve their Water Breathing skills.`,
+        review: `The dojo is spacious and well-equipped, with plenty of room for both individual and group training. Overall, I would highly recommend this location to anyone looking to improve their Water Breathing skills.`,
         stars: 5,
       },
       {
         spotId: 5,
         userId: 1,
-        review: `If you're looking for an exquisite and luxurious experience, the Butterfly Mansion is the perfect choice. This stunning mansion is beautifully decorated with traditional Japanese architecture and modern amenities, making it a perfect blend of old and new. The rooms are spacious and comfortable, with plush bedding and high-end furnishings that make you feel like royalty. The grounds of the mansion are immaculately maintained, with lush gardens and serene water features that create a peaceful and relaxing atmosphere. Additionally, the staff is incredibly attentive and accommodating, making sure that every need is met and every desire is fulfilled. Whether you're recovering from a mission or training for the next one, the Butterfly Mansion is the perfect place to be. I cannot recommend this stunning property enough.`,
+        review: `The grounds of the mansion are immaculately maintained, with lush gardens that create a peaceful and relaxing atmosphere. The staff is incredibly attentive and accommodating, making sure that every need is met as we recover and train for the next mission.`,
         stars: 5,
       },
     ], {});
