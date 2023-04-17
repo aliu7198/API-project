@@ -12,25 +12,39 @@ module.exports = {
     options.tableName = 'Users';
     return queryInterface.bulkInsert(options, [
       {
-        firstName: 'Demo',
-        lastName: 'Lition',
-        email: 'demo@user.io',
-        username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        firstName: 'Tanjiro',
+        lastName: 'Kamado',
+        email: 'tanjirou.kamado@demonslayercorps.io',
+        username: 'ChildOfBrightness714',
+        hashedPassword: bcrypt.hashSync('HinokamiKagura1')
       },
       {
-        firstName: 'User',
-        lastName: 'One',
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
+        firstName: 'Zenitsu',
+        lastName: 'Agatsuma',
+        email: 'zenitsu.agatsuma@demonslayercorps.io',
+        username: 'ThunderStruck_09',
+        hashedPassword: bcrypt.hashSync('sleepyboi3')
       },
       {
-        firstName: 'User',
-        lastName: 'Two',
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
+        firstName: 'Inosuke',
+        lastName: 'Hashibira',
+        email: 'inosuke.hashibira@demonslayercorps.io',
+        username: 'BoarKing_123',
+        hashedPassword: bcrypt.hashSync('bb3devour')
+      },
+      {
+        firstName: 'Giyuu',
+        lastName: 'Tomioka',
+        email: 'giyuu.tomioka@demonslayercorps.io',
+        username: 'WaterHashira11',
+        hashedPassword: bcrypt.hashSync('CalmWater5')
+      },
+      {
+        firstName: 'Shinobu',
+        lastName: 'Kocho',
+        email: 'shinobu.kocho@demonslayercorps.io',
+        username: 'InsectPillar10',
+        hashedPassword: bcrypt.hashSync('poisonbutterfly6')
       }
     ], {});
   },
@@ -39,7 +53,7 @@ module.exports = {
     options.tableName = 'Users';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      username: { [Op.in]: ['ChildOfBrightness714', 'ExplodingBlood2', 'ThunderStruck_09', 'BoarKing_123', 'WaterHashira11'] }
     }, {});
   }
 };
