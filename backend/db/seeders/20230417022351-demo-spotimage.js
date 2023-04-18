@@ -12,23 +12,28 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: 'image/kamadofamilyhome'
+        url: 'image/kamadofamilyhome',
+        preview: true
         },
         {
         spotId: 2,
-        url: 'image/zenitsuapartment'
+        url: 'image/zenitsuapartment',
+        preview: true
         },
         {
         spotId: 3,
-        url: 'image/inosukecave'
+        url: 'image/inosukecave',
+        preview: true
         },
         {
         spotId: 4,
-        url: 'image/tomiokafamilydojo'
+        url: 'image/tomiokafamilydojo',
+        preview: true
         },
         {
         spotId: 5,
-        url: 'image/butterflymansion'
+        url: 'image/butterflymansion',
+        preview: true
         }
     ]);
   },
