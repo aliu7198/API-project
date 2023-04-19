@@ -7,6 +7,7 @@ const { Spot,Review,SpotImage,User,ReviewImage } = require("../../db/models");
 const router = express.Router();
 /*****************************************************************************/
 
+// Get all Spots owned by the Current User
 // GET /spots/current
 router.get("/current", restoreUser, requireAuth, async (req, res) => {
   const { user } = req;
@@ -54,6 +55,7 @@ router.get("/current", restoreUser, requireAuth, async (req, res) => {
   return res.json({ Spots: spotsArr });
 });
 
+// Get all Reviews by a Spot's id
 // GET /spots/:spotId/reviews
 router.get("/:spotId/reviews", async (req, res) => {
   const reviews = await Review.findAll({
@@ -73,6 +75,7 @@ router.get("/:spotId/reviews", async (req, res) => {
   return res.json({ Reviews: reviews });
 });
 
+// Get details of a Spot from an id
 // GET /spots/:spotId
 router.get("/:spotId", async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
@@ -107,6 +110,7 @@ router.get("/:spotId", async (req, res) => {
   }
 });
 
+// Get all Spots
 // GET /spots
 router.get("/", async (req, res) => {
   const spots = await Spot.findAll({
@@ -148,7 +152,7 @@ router.get("/", async (req, res) => {
   return res.json({ Spots: spotsArr });
 });
 
-// Validator for Spot
+// Validator for Spots
 const validateSpot = [
   check("address")
     .exists({ checkFalsy: true })
@@ -179,6 +183,7 @@ const validateSpot = [
   handleValidationErrors,
 ];
 
+// Add an Image to a Spot based on the Spot's id
 // POST /spots/:spotId/images
 router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
   // require authentication & authorization
@@ -205,6 +210,13 @@ router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
   }
 });
 
+// Create a Review for a Spot based on the Spot's id
+// POST /spots/:spotId/reviews
+router.post('/:spotId/reviews', requireAuth, restoreUser, async (req, res) => {
+
+})
+
+// Create a Spot
 // POST /spots
 router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
   const { user } = req;
@@ -215,6 +227,7 @@ router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
 
   return res.status(201).json(newSpot);
 });
+
 
 // PUT /spots/:spotId
 router.put(
