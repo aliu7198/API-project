@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const bcrypt = require("bcryptjs");
 
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { Spot, Review, SpotImage } = require("../../db/models");
+const { Spot, Review, SpotImage, User } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -37,7 +37,7 @@ router.get("/current", restoreUser, requireAuth, async (req, res, next) => {
     where: {
       ownerId: user.dataValues.id,
     },
-    include: [{ model: Review }, { model: SpotImage }]
+    include: [{ model: Review }, { model: SpotImage }],
   });
 
   const spotsArr = [];
@@ -67,6 +67,37 @@ router.get("/current", restoreUser, requireAuth, async (req, res, next) => {
   });
 
   return res.json({ Spots: spotsArr });
+});
+
+// GET /spots/:spotId
+router.get("/:spotId", async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId, {
+    include: [
+      { model: Review },
+      { model: SpotImage, attributes: ["id", "url", "preview"] },
+      { model: User, as: "Owner", attributes: ["id", "firstName", "lastName"] },
+    ],
+  });
+
+  if (spot) {
+    const spotObj = spot.toJSON();
+
+    if (spotObj.Reviews.length) {
+      let sum = 0;
+      spotObj.Reviews.forEach((review) => {
+        sum += review.stars;
+      });
+      spotObj.numReviews = spot.Reviews.length;
+      spotObj.avgStarRating = sum / spot.Reviews.length;
+      delete spotObj.Reviews;
+    }
+
+    return res.json(spotObj);
+  } else {
+    res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
 });
 
 // GET /spots
