@@ -175,19 +175,9 @@ router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
 // POST /spots
 router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
   const { user } = req;
-  const { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
   const newSpot = await Spot.create({
     ownerId: user.dataValues.id,
-    address,
-    city,
-    state,
-    country,
-    lat,
-    lng,
-    name,
-    description,
-    price,
+    ...req.body
   });
 
   return res.status(201).json(newSpot);
