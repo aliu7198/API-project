@@ -54,8 +54,8 @@ router.get("/:spotId", async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
     include: [
       { model: Review },
-      { model: SpotImage, attributes: ["id", "url", "preview"] },
-      { model: User, as: "Owner", attributes: ["id", "firstName", "lastName"] },
+      { model: SpotImage },
+      { model: User, as: "Owner", attributes: ["id", "firstName", "lastName"]},
     ],
   });
 
@@ -114,8 +114,6 @@ router.get("/", async (req, res) => {
   return res.json({ Spots: spotsArr });
 });
 
-// POST /spots
-
 // Validator for Spot
 const validateSpot = [
   check("address")
@@ -147,6 +145,34 @@ const validateSpot = [
   handleValidationErrors,
 ];
 
+// POST /spots/:spotId/images
+router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
+  // require authentication & authorization
+  const { user } = req;
+
+  const { url, preview } = req.body;
+  const spot = await Spot.findByPk(req.params.spotId);
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
+
+  if (spot.ownerId === user.id) {
+    const newSpotImage = await spot.createSpotImage({ url, preview });
+    return res.json({
+      id: newSpotImage.id,
+      url: newSpotImage.url,
+      preview: newSpotImage.preview
+    });
+  } else {
+    return res.status(403).json({
+      message: "Forbidden",
+    });
+  }
+});
+
+// POST /spots
 router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
   const { user } = req;
   const { address, city, state, country, lat, lng, name, description, price } =
