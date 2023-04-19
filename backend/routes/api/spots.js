@@ -106,7 +106,7 @@ router.get("/", async (req, res, next) => {
     include: [{ model: Review }, { model: SpotImage }],
   });
 
-  let spotsArr = [];
+  const spotsArr = [];
   spots.forEach((spot) => {
     spotsArr.push(spot.toJSON());
   });
