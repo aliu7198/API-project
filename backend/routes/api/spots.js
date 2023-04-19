@@ -1,6 +1,4 @@
 const express = require("express");
-const { Op } = require("sequelize");
-const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 const { restoreUser, requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -10,7 +8,7 @@ const router = express.Router();
 /*****************************************************************************/
 
 // GET /spots/current
-router.get("/current", restoreUser, requireAuth, async (req, res, next) => {
+router.get("/current", restoreUser, requireAuth, async (req, res) => {
   const { user } = req;
 
   const spots = await Spot.findAll({
