@@ -13,7 +13,7 @@ router.get("/current", restoreUser, requireAuth, async (req, res) => {
 
   const spots = await Spot.findAll({
     where: {
-      ownerId: user.dataValues.id,
+      ownerId: user.id,
     },
     include: [{ model: Review }, { model: SpotImage }],
   });
@@ -31,15 +31,22 @@ router.get("/current", restoreUser, requireAuth, async (req, res) => {
         sum += review.stars;
       });
       spot.avgRating = sum / spot.Reviews.length;
+    } else {
+      spot.avgRating = 0;
     }
 
     if (spot.SpotImages.length) {
       spot.SpotImages.forEach((image) => {
         if (image.preview) {
           spot.previewImage = image.url;
+        } else {
+          spot.previewImage = null;
         }
       });
+    } else {
+      spot.previewImage = null;
     }
+
     delete spot.Reviews;
     delete spot.SpotImages;
   });
@@ -68,6 +75,9 @@ router.get("/:spotId", async (req, res) => {
       spotObj.numReviews = spot.Reviews.length;
       spotObj.avgStarRating = sum / spot.Reviews.length;
       delete spotObj.Reviews;
+    } else {
+      spotObj.numReviews = 0;
+      spotObj.avgStarRating = 0;
     }
 
     return res.json(spotObj);
@@ -95,16 +105,23 @@ router.get("/", async (req, res) => {
       spot.Reviews.forEach((review) => {
         sum += review.stars;
       });
-      spot.avgRating = sum / spot.Reviews.length;
+      spot.avgRating = (sum / spot.Reviews.length).toFixed(1);
+    } else {
+      spot.avgRating = (0).toFixed(1);
     }
 
     if (spot.SpotImages.length) {
       spot.SpotImages.forEach((image) => {
         if (image.preview) {
           spot.previewImage = image.url;
+        } else {
+          spot.previewImage = null;
         }
       });
+    } else {
+      spot.previewImage = null;
     }
+
     delete spot.Reviews;
     delete spot.SpotImages;
   });
@@ -173,7 +190,7 @@ router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
 router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
   const { user } = req;
   const newSpot = await Spot.create({
-    ownerId: user.dataValues.id,
+    ownerId: user.id,
     ...req.body,
   });
 
