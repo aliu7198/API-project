@@ -2,7 +2,7 @@ const express = require("express");
 const { check } = require("express-validator");
 const { restoreUser, requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
-const { Spot, Review, SpotImage, User } = require("../../db/models");
+const { Spot,Review,SpotImage,User,ReviewImage } = require("../../db/models");
 
 const router = express.Router();
 /*****************************************************************************/
@@ -52,6 +52,25 @@ router.get("/current", restoreUser, requireAuth, async (req, res) => {
   });
 
   return res.json({ Spots: spotsArr });
+});
+
+// GET /spots/:spotId/reviews
+router.get("/:spotId/reviews", async (req, res) => {
+  const reviews = await Review.findAll({
+    where: { spotId: req.params.spotId },
+    include: [
+      { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      { model: ReviewImage }
+    ]
+  });
+
+  if (!reviews.length) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
+
+  return res.json({ Reviews: reviews });
 });
 
 // GET /spots/:spotId
