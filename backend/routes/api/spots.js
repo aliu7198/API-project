@@ -149,9 +149,8 @@ const validateSpot = [
 router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
   // require authentication & authorization
   const { user } = req;
-
-  const { url, preview } = req.body;
   const spot = await Spot.findByPk(req.params.spotId);
+
   if (!spot) {
     return res.status(404).json({
       message: "Spot couldn't be found",
@@ -159,7 +158,7 @@ router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
   }
 
   if (spot.ownerId === user.id) {
-    const newSpotImage = await spot.createSpotImage({ url, preview });
+    const newSpotImage = await spot.createSpotImage({...req.body});
     return res.json({
       id: newSpotImage.id,
       url: newSpotImage.url,
