@@ -55,7 +55,7 @@ router.get("/:spotId", async (req, res) => {
     include: [
       { model: Review },
       { model: SpotImage },
-      { model: User, as: "Owner", attributes: ["id", "firstName", "lastName"]},
+      { model: User, as: "Owner", attributes: ["id", "firstName", "lastName"] },
     ],
   });
 
@@ -158,11 +158,11 @@ router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
   }
 
   if (spot.ownerId === user.id) {
-    const newSpotImage = await spot.createSpotImage({...req.body});
+    const newSpotImage = await spot.createSpotImage({ ...req.body });
     return res.json({
       id: newSpotImage.id,
       url: newSpotImage.url,
-      preview: newSpotImage.preview
+      preview: newSpotImage.preview,
     });
   } else {
     return res.status(403).json({
@@ -176,26 +176,55 @@ router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
   const { user } = req;
   const newSpot = await Spot.create({
     ownerId: user.dataValues.id,
-    ...req.body
+    ...req.body,
   });
 
   return res.status(201).json(newSpot);
 });
 
 // PUT /spots/:spotId
-router.put('/:spotId', requireAuth, restoreUser, validateSpot, async (req, res) => {
+router.put(
+  "/:spotId",
+  requireAuth,
+  restoreUser,
+  validateSpot,
+  async (req, res) => {
+    const { user } = req;
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+      return res.status(404).json({
+        message: "Spot couldn't be found",
+      });
+    }
+
+    if (spot.ownerId === user.id) {
+      await spot.update({ ...req.body });
+      return res.json(spot);
+    } else {
+      return res.status(403).json({
+        message: "Forbidden",
+      });
+    }
+  }
+);
+
+// DELETE /spots/:spotId
+router.delete("/:spotId", requireAuth, restoreUser, async (req, res) => {
   const { user } = req;
   const spot = await Spot.findByPk(req.params.spotId);
 
   if (!spot) {
     return res.status(404).json({
-      message: "Spot couldn't be found"
+      message: "Spot couldn't be found",
     });
   }
 
   if (spot.ownerId === user.id) {
-    await spot.update({...req.body});
-    return res.json(spot);
+    await spot.destroy();
+    return res.json({
+      message: "Successfully deleted",
+    });
   } else {
     return res.status(403).json({
       message: "Forbidden",
