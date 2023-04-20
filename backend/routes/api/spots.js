@@ -19,33 +19,26 @@ router.get("/current", requireAuth, async (req, res) => {
     include: [{ model: Review }, { model: SpotImage }],
   });
 
-  const spotsArr = [];
+  const spotsArr = spots.map((spot) => spot.toJSON());
 
-  spots.forEach((spot) => {
-    spotsArr.push(spot.toJSON());
-  });
-
-  spotsArr.forEach(async (spot) => {
+  spotsArr.forEach((spot) => {
     if (spot.Reviews.length) {
       let sum = 0;
       spot.Reviews.forEach((review) => {
         sum += review.stars;
       });
-      spot.avgRating = sum / spot.Reviews.length;
+      spot.avgRating = (sum / spot.Reviews.length).toFixed(1);
     } else {
-      spot.avgRating = 0;
+      spot.avgRating = (0).toFixed(1);
     }
 
+    spot.previewImage = null;
     if (spot.SpotImages.length) {
       spot.SpotImages.forEach((image) => {
         if (image.preview) {
           spot.previewImage = image.url;
-        } else {
-          spot.previewImage = null;
         }
       });
-    } else {
-      spot.previewImage = null;
     }
 
     delete spot.Reviews;
@@ -95,12 +88,12 @@ router.get("/:spotId", async (req, res) => {
         sum += review.stars;
       });
       spotObj.numReviews = spot.Reviews.length;
-      spotObj.avgStarRating = sum / spot.Reviews.length;
-      delete spotObj.Reviews;
+      spotObj.avgStarRating = (sum / spot.Reviews.length).toFixed(1);
     } else {
       spotObj.numReviews = 0;
-      spotObj.avgStarRating = 0;
+      spotObj.avgStarRating = (0).toFixed(1);
     }
+    delete spotObj.Reviews;
 
     return res.json(spotObj);
   } else {
@@ -117,12 +110,9 @@ router.get("/", async (req, res) => {
     include: [{ model: Review }, { model: SpotImage }],
   });
 
-  const spotsArr = [];
-  spots.forEach((spot) => {
-    spotsArr.push(spot.toJSON());
-  });
+  const spotsArr = spots.map((spot) => spot.toJSON());
 
-  spotsArr.forEach(async (spot) => {
+  spotsArr.forEach((spot) => {
     if (spot.Reviews.length) {
       let sum = 0;
       spot.Reviews.forEach((review) => {
@@ -133,16 +123,13 @@ router.get("/", async (req, res) => {
       spot.avgRating = (0).toFixed(1);
     }
 
+    spot.previewImage = null;
     if (spot.SpotImages.length) {
       spot.SpotImages.forEach((image) => {
         if (image.preview) {
           spot.previewImage = image.url;
-        } else {
-          spot.previewImage = null;
         }
       });
-    } else {
-      spot.previewImage = null;
     }
 
     delete spot.Reviews;
