@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     },
     url: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     preview: {
       type: DataTypes.BOOLEAN,
@@ -31,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'SpotImage',
+    defaultScope: {
+      attributes: {
+        exclude: ['spotId', 'createdAt', 'updatedAt']
+      }
+    }
   });
   return SpotImage;
 };

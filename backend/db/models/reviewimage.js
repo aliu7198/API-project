@@ -21,11 +21,17 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     },
     url: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     sequelize,
     modelName: 'ReviewImage',
+    defaultScope: {
+      attributes: {
+        exclude: ['reviewId', 'createdAt', 'updatedAt']
+      }
+    }
   });
   return ReviewImage;
 };

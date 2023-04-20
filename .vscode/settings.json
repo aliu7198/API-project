@@ -14,5 +14,6 @@
         "Tanjiro",
         "Tomioka",
         "Zenitsu"
-    ]
+    ],
+    "prettier.printWidth": 150
 }
