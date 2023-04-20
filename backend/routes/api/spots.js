@@ -1,6 +1,6 @@
 const express = require("express");
 const { check } = require("express-validator");
-const { restoreUser, requireAuth } = require("../../utils/auth");
+const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Spot,Review,SpotImage,User,ReviewImage } = require("../../db/models");
 
@@ -9,7 +9,7 @@ const router = express.Router();
 
 // Get all Spots owned by the Current User
 // GET /spots/current
-router.get("/current", restoreUser, requireAuth, async (req, res) => {
+router.get("/current", requireAuth, async (req, res) => {
   const { user } = req;
 
   const spots = await Spot.findAll({
@@ -185,7 +185,7 @@ const validateSpot = [
 
 // Add an Image to a Spot based on the Spot's id
 // POST /spots/:spotId/images
-router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
+router.post("/:spotId/images", requireAuth, async (req, res) => {
   // require authentication & authorization
   const { user } = req;
   const spot = await Spot.findByPk(req.params.spotId);
@@ -223,7 +223,7 @@ const validateReview = [
 
 // Create a Review for a Spot based on the Spot's id
 // POST /spots/:spotId/reviews
-router.post('/:spotId/reviews', requireAuth, restoreUser, validateReview, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
   const { user } = req;
   const spot = await Spot.findByPk(req.params.spotId);
 
@@ -254,7 +254,7 @@ router.post('/:spotId/reviews', requireAuth, restoreUser, validateReview, async 
 
 // Create a Spot
 // POST /spots
-router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
+router.post("/", requireAuth, validateSpot, async (req, res) => {
   const { user } = req;
   const newSpot = await Spot.create({
     ownerId: user.id,
@@ -264,12 +264,10 @@ router.post("/", requireAuth, restoreUser, validateSpot, async (req, res) => {
   return res.status(201).json(newSpot);
 });
 
-
 // PUT /spots/:spotId
 router.put(
   "/:spotId",
   requireAuth,
-  restoreUser,
   validateSpot,
   async (req, res) => {
     const { user } = req;
@@ -293,7 +291,7 @@ router.put(
 );
 
 // DELETE /spots/:spotId
-router.delete("/:spotId", requireAuth, restoreUser, async (req, res) => {
+router.delete("/:spotId", requireAuth, async (req, res) => {
   const { user } = req;
   const spot = await Spot.findByPk(req.params.spotId);
 
