@@ -5,6 +5,17 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { Spot, Review, SpotImage, User, ReviewImage } = require("../../db/models");
 
 const router = express.Router();
+
+const validateReview = [
+  check("review")
+  .exists({ checkFalsy: true })
+  .withMessage("Street address is required"),
+  check("stars")
+  .exists({ checkFalsy: true })
+  .isInt({min: 1, max: 5})
+  .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors
+];
 /*****************************************************************************/
 
 // Get all Reviews of the Current User
@@ -79,4 +90,5 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
 });
 
 /*****************************************************************************/
-module.exports = router;
+module.exports.reviewsRouter = router;
+module.exports.validateReview = validateReview;
