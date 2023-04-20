@@ -9,7 +9,7 @@ const router = express.Router();
 const validateReview = [
   check("review")
   .exists({ checkFalsy: true })
-  .withMessage("Street address is required"),
+  .withMessage("Review text is required"),
   check("stars")
   .exists({ checkFalsy: true })
   .isInt({min: 1, max: 5})
@@ -86,6 +86,28 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
       id: newReviewImage.id,
       url: newReviewImage.url
     });
+  }
+});
+
+// Edit a Review
+// PUT /reviews/:reviewId
+router.put('/:reviewId', requireAuth, validateReview,async (req, res) => {
+  const { user } = req;
+  const review = await Review.findByPk(req.params.reviewId);
+
+  if (!review) {
+    return res.status(404).json({
+      message: "Review couldn't be found",
+    });
+  }
+
+  if (review.userId !== user.id) {
+    return res.status(403).json({
+      message: "Forbidden",
+    });
+  } else {
+    await review.update({...req.body});
+    return res.json(review);
   }
 });
 
