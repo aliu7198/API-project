@@ -2,8 +2,9 @@ const express = require("express");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
-const { Spot, Review, SpotImage, User, ReviewImage } = require("../../db/models");
+const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
 const { validateReview } = require("./reviews");
+const { validateBooking } = require("./bookings");
 
 const router = express.Router();
 

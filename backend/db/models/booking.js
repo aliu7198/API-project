@@ -27,37 +27,37 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE'
       },
       startDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
           isDate: true,
-          isAfterToday(value) {
-            if (new Date(value) < new Date()) {
-              throw new Error('Booking must start on a future date');
-            }
-          },
-          isBeforeEndDate(value) {
-            if (new Date(value) < new Date(this.endDate)) {
-              throw new Error('Start date cannot come after end date');
-            }
-          }
+          // isAfterToday(value) {
+          //   if (new Date(value) < new Date()) {
+          //     throw new Error('Booking must start on a future date');
+          //   }
+          // },
+          // isBeforeEndDate(value) {
+          //   if (new Date(value) < new Date(this.endDate)) {
+          //     throw new Error('Start date cannot come after end date');
+          //   }
+          // }
         }
       },
       endDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
           isDate: true,
-          isAfterToday(value) {
-            if (new Date(value) < new Date()) {
-              throw new Error('Booking must end on a future date');
-            }
-          },
-          isAfterStartDate(value) {
-            if (new Date(value) < new Date(this.startDate)) {
-              throw new Error('End date cannot come before start date');
-            }
-          }
+          // isAfterToday(value) {
+          //   if (new Date(value) < new Date()) {
+          //     throw new Error('Booking must end on a future date');
+          //   }
+          // },
+          // isAfterStartDate(value) {
+          //   if (new Date(value) < new Date(this.startDate)) {
+          //     throw new Error('End date cannot come before start date');
+          //   }
+          // }
         }
       },
     },
