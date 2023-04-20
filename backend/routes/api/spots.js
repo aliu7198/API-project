@@ -63,6 +63,12 @@ router.get("/current", requireAuth, async (req, res) => {
   return res.json({ Spots: spotsArr });
 });
 
+// Get all Bookings for a Spot based on the Spot's id
+// GET /spots/:spotId/bookings
+router.get('/:spotId/bookings', async (req, res) => {
+
+});
+
 // Get all Reviews by a Spot's id
 // GET /spots/:spotId/reviews
 router.get("/:spotId/reviews", async (req, res) => {
