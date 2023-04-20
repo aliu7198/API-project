@@ -210,11 +210,47 @@ router.post("/:spotId/images", requireAuth, restoreUser, async (req, res) => {
   }
 });
 
+const validateReview = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .withMessage("Street address is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .isInt({min: 1, max: 5})
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors
+];
+
 // Create a Review for a Spot based on the Spot's id
 // POST /spots/:spotId/reviews
-router.post('/:spotId/reviews', requireAuth, restoreUser, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, restoreUser, validateReview, async (req, res) => {
+  const { user } = req;
+  const spot = await Spot.findByPk(req.params.spotId);
 
-})
+  const existingReview = await Review.findOne({
+    where: {
+      userId: user.id,
+      spotId: req.params.spotId
+    }
+  });
+
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
+
+  if (existingReview) {
+    return res.status(500).json({
+      message: "User already has a review for this spot"
+    });
+  }
+
+  const newReview = await spot.createReview({
+    userId: user.id,
+    ...req.body});
+  return res.json(newReview);
+});
 
 // Create a Spot
 // POST /spots
