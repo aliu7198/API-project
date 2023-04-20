@@ -159,16 +159,16 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     });
   }
 
-  if (spot.ownerId === user.id) {
+  if (spot.ownerId !== user.id) {
+    return res.status(403).json({
+      message: "Forbidden",
+    });
+  } else {
     const newSpotImage = await spot.createSpotImage({ ...req.body });
     return res.json({
       id: newSpotImage.id,
       url: newSpotImage.url,
       preview: newSpotImage.preview,
-    });
-  } else {
-    return res.status(403).json({
-      message: "Forbidden",
     });
   }
 });
@@ -229,13 +229,13 @@ router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
     });
   }
 
-  if (spot.ownerId === user.id) {
-    await spot.update({ ...req.body });
-    return res.json(spot);
-  } else {
+  if (spot.ownerId !== user.id) {
     return res.status(403).json({
       message: "Forbidden",
     });
+  } else {
+    await spot.update({ ...req.body });
+    return res.json(spot);
   }
 });
 
@@ -250,14 +250,14 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
     });
   }
 
-  if (spot.ownerId === user.id) {
+  if (spot.ownerId !== user.id) {
+    return res.status(403).json({
+      message: "Forbidden",
+    });
+  } else {
     await spot.destroy();
     return res.json({
       message: "Successfully deleted",
-    });
-  } else {
-    return res.status(403).json({
-      message: "Forbidden",
     });
   }
 });
