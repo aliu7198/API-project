@@ -217,6 +217,7 @@ router.post("/", requireAuth, validateSpot, async (req, res) => {
   return res.status(201).json(newSpot);
 });
 
+// Edit a Spot
 // PUT /spots/:spotId
 router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
   const { user } = req;
