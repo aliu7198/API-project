@@ -79,7 +79,7 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
   }
 
   // can't edit booking past end date
-  if (new Date(booking.endDate) < new Date()) {
+  if (new Date(booking.endDate) <= new Date()) {
     return res.status(403).json({
       message: "Past bookings can't be modified",
     });
@@ -144,7 +144,7 @@ router.delete("/:bookingId", requireAuth, async (req, res) => {
   }
 
   // Bookings that have been started can't be deleted
-  if (new Date(booking.startDate) < new Date()) {
+  if (new Date(booking.startDate) <= new Date()) {
     return res.status(403).json({
         message: "Bookings that have been started can't be deleted",
       });
