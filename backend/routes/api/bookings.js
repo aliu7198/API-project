@@ -5,10 +5,25 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
 
 const router = express.Router();
+
+const validateBooking = [
+  check("startDate").exists({ checkFalsy: true }).withMessage("startDate must exist"),
+  check("endDate")
+    .custom((value, { req }) => {
+        if (!value) {
+            throw new Error('endDate must exist');
+        }
+        if (new Date(value) <= new Date(req.body.startDate)) {
+            throw new Error('endDate cannot be on or before startDate')
+        }
+        return true;
+    }),
+  handleValidationErrors,
+];
 /*****************************************************************************/
 
 // Get all of the Current User's Bookings
-
+// GET /bookings/current
 router.get("/current", requireAuth, async (req, res) => {
   const { user } = req;
   const bookings = await Booking.findAll({
@@ -43,4 +58,4 @@ router.get("/current", requireAuth, async (req, res) => {
 
 /*****************************************************************************/
 module.exports.bookingsRouter = router;
-// module.exports.validateBooking = validateBooking;
+module.exports.validateBooking = validateBooking;

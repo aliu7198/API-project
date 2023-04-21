@@ -79,9 +79,9 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
   if (spot.ownerId === user.id) {
     bookings = await spot.getBookings({ include: [{ model: User, attributes: ["id", "firstName", "lastName"] }] });
   } else {
-    bookings = await spot.getBookings({attributes: ['spotId', 'startDate', 'endDate']});
+    bookings = await spot.getBookings({ attributes: ["spotId", "startDate", "endDate"] });
   }
-  return res.json({Bookings: bookings});
+  return res.json({ Bookings: bookings });
 });
 
 // Get all Reviews by a Spot's id
@@ -195,6 +195,56 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
   }
 });
 
+// Create a Booking from a Spot based on the Spot's id
+// POST /spots/:spotId/booking
+router.post("/:spotId/bookings", requireAuth, validateBooking, async (req, res) => {
+  const { user } = req;
+  const startDate = new Date(req.body.startDate);
+  const endDate = new Date(req.body.endDate);
+  const spot = await Spot.findByPk(req.params.spotId, { include: [{ model: Booking }] });
+
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
+
+  if (spot.ownerId === user.id) {
+    return res.status(403).json({
+      message: "Forbidden",
+    });
+  }
+
+  // booking conflict
+  for (let booking of spot.Bookings) {
+    const bookingStart = new Date(booking.startDate);
+    const bookingEnd = new Date(booking.endDate);
+    const errors = {};
+    if (startDate >= bookingStart && startDate <= bookingEnd) {
+      errors.startDate = "Start date conflicts with an existing booking";
+    }
+    if (endDate >= bookingStart && endDate <= bookingEnd) {
+      errors.endDate = "End date conflicts with an existing booking";
+    }
+    if (startDate < bookingStart && endDate > bookingEnd) {
+      errors.endDate = "End date conflicts with an existing booking";
+    }
+    if (Object.keys(errors).length) {
+      return res.status(403).json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        errors,
+      });
+    }
+  }
+
+  const newBooking = await spot.createBooking({
+    userId: user.id,
+    ...req.body,
+  });
+
+  return res.json(newBooking);
+});
+
 // Create a Review for a Spot based on the Spot's id
 // POST /spots/:spotId/reviews
 router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res) => {
@@ -224,6 +274,7 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res) =>
     userId: user.id,
     ...req.body,
   });
+
   return res.json(newReview);
 });
 
