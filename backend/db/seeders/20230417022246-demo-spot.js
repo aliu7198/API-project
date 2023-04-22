@@ -31,7 +31,7 @@ module.exports = {
         lat: 35.710063,
         lng: 139.8107,
         name: 'Zenitsu\'s Apartment',
-        description: 'The small and cozy apartment of Zenitsu, located in the heart of the city with a variety of fun museums, park, and nightlife spots around.',
+        description: 'The small and cozy apartment of Zenitsu, located in the heart of the city with a variety of fun museums, parks, and nightlife spots around.',
         price: 120
         },
         {
