@@ -190,7 +190,7 @@ router.get("/", validateQuery, async (req, res) => {
     delete spot.SpotImages;
   });
 
-  return res.json({ Spots: spotsArr });
+  return res.json({ Spots: spotsArr, page, size });
 });
 
 // Add an Image to a Spot based on the Spot's id
