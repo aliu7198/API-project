@@ -20,6 +20,7 @@ const validateLogin = [
     .withMessage("Please provide a password."),
   handleValidationErrors,
 ];
+/*****************************************************************************/
 
 // Log in
 router.post("/", validateLogin, async (req, res, next) => {
@@ -82,4 +83,5 @@ router.get("/", (req, res) => {
   }
 });
 
+/*****************************************************************************/
 module.exports = router;
