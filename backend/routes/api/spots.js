@@ -2,9 +2,11 @@ const express = require("express");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
+const validateQuery = require("../../utils/query-validator");
 const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
 const { validateReview } = require("./reviews");
 const { validateBooking } = require("./bookings");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -20,6 +22,7 @@ const validateSpot = [
   check("price").exists({ checkFalsy: true }).withMessage("Price per day is required"),
   handleValidationErrors,
 ];
+
 /*****************************************************************************/
 
 // Get all Spots owned by the Current User
@@ -134,9 +137,31 @@ router.get("/:spotId", async (req, res) => {
 
 // Get all Spots
 // GET /spots
-router.get("/", async (req, res) => {
+router.get("/", validateQuery, async (req, res) => {
+  const { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+  const pagination = {};
+  if (page >= 1 && size >= 1) {
+    pagination.limit = size;
+    pagination.offset = size * (page - 1);
+  }
+
+  const where = {};
+
+  if (maxLat) where.lat = { [Op.lte]: +maxLat };
+  if (minLat) where.lat = { [Op.gte]: +minLat };
+  if (maxLat && minLat) where.lat = { [Op.between]: [+minLat, +maxLat] };
+  if (minLng) where.lng = { [Op.lte]: +minLng };
+  if (maxLng) where.lng = { [Op.gte]: +maxLng };
+  if (maxLng && minLng) where.lng = { [Op.between]: [+minLng, +maxLng] };
+  if (minPrice) where.price = { [Op.gte]: +minPrice };
+  if (maxPrice) where.price = { [Op.lte]: +maxPrice };
+  if (minPrice && maxPrice) where.price = { [Op.between]: [+minPrice, +maxPrice] };
+
   const spots = await Spot.findAll({
+    where,
     include: [{ model: Review }, { model: SpotImage }],
+    ...pagination,
   });
 
   const spotsArr = spots.map((spot) => spot.toJSON());
