@@ -1,5 +1,5 @@
 const { handleValidationErrors } = require("./validation");
-const { query } = require("express-validator/check");
+const { query } = require("express-validator");
 
 /*****************************************************************************/
 
