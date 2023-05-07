@@ -93,8 +93,6 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
     },
   });
 
-  console.log(otherBookings);
-
   if (otherBookings.length) {
     // booking conflict
     for (let booking of otherBookings) {
