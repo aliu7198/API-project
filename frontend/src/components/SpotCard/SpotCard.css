@@ -8,11 +8,10 @@ img {
 #line-1 {
     display: flex;
     justify-content: space-between;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 #spotcard-wrapper {
-    /* border: 1px solid red; */
     width: fit-content;
     display: flex;
     flex-direction: column;
