@@ -1,7 +1,3 @@
-i {
-    color: grey;
-}
-
 li {
     margin: 3px 0px;
     cursor: pointer;
@@ -38,6 +34,7 @@ li {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    color: grey;
 }
 
 .profile-button:focus {
