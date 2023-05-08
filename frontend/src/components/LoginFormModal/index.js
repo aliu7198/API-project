@@ -39,10 +39,11 @@ function LoginFormModal() {
       {errors.credential && (
         <p className="errors">{errors.credential}</p>
       )}
-        <label>
+        <label htmlFor="credential">
           Username or Email
           <br></br>
           <input
+            id="credential"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -50,10 +51,11 @@ function LoginFormModal() {
             placeholder="user@example.io"
           />
         </label>
-        <label>
+        <label htmlFor="password">
           Password
           <br></br>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
