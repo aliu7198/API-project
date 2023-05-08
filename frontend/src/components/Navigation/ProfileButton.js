@@ -42,8 +42,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i class="fa-solid fa-bars fa-sm" />
+      <button onClick={openMenu} className="profile-button">
+        <i className="fa-solid fa-bars fa-sm" />
         <i className="fas fa-user-circle fa-xl" />
       </button>
       <ul className={`dropdown ${ulClassName}`} ref={ulRef}>
@@ -60,12 +60,8 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <li>
               <OpenModalMenuItem itemText="Log In" onItemClick={closeMenu} modalComponent={<LoginFormModal />} />
-            </li>
-            <li>
               <OpenModalMenuItem itemText="Sign Up" onItemClick={closeMenu} modalComponent={<SignupFormModal />} />
-            </li>
           </>
         )}
       </ul>
