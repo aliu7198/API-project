@@ -48,20 +48,22 @@ function ProfileButton({ user }) {
       </button>
       <ul className={`dropdown ${ulClassName}`} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
+          <div id="dropdown-wrapper">
+            <div id="user-info">
+              <li>Hello, {user.username}</li>
+              <li>
+                {user.firstName} {user.lastName}
+              </li>
+              <li>{user.email}</li>
+            </div>
             <li>
-              {user.firstName} {user.lastName}
+              <button id="logout-button" onClick={logout}>Log Out</button>
             </li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-          </>
+          </div>
         ) : (
           <>
-              <OpenModalMenuItem itemText="Log In" onItemClick={closeMenu} modalComponent={<LoginFormModal />} />
-              <OpenModalMenuItem itemText="Sign Up" onItemClick={closeMenu} modalComponent={<SignupFormModal />} />
+            <OpenModalMenuItem itemText="Log In" onItemClick={closeMenu} modalComponent={<LoginFormModal />} />
+            <OpenModalMenuItem itemText="Sign Up" onItemClick={closeMenu} modalComponent={<SignupFormModal />} />
           </>
         )}
       </ul>
