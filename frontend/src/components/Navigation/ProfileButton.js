@@ -50,13 +50,13 @@ function ProfileButton({ user }) {
         {user ? (
           <div id="dropdown-wrapper">
             <div id="user-info">
-              <li>Hello, {user.username}</li>
-              <li>
-                {user.firstName} {user.lastName}
-              </li>
+              <li>Hello, {user.firstName}</li>
               <li>{user.email}</li>
             </div>
-            <li>
+            <div id="manage-spots">
+              <li>Manage Spots</li>
+            </div>
+            <li id="logout-button-wrapper">
               <button id="logout-button" onClick={logout}>Log Out</button>
             </li>
           </div>

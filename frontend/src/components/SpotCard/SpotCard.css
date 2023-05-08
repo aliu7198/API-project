@@ -1,0 +1,21 @@
+img {
+    object-fit: cover;
+    width: 15em;
+    height: 15em;
+    border-radius: 15px;
+}
+
+#line-1 {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+#spotcard-wrapper {
+    /* border: 1px solid red; */
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3em;
+    cursor: pointer;
+}

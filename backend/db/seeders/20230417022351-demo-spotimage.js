@@ -32,7 +32,7 @@ module.exports = {
         },
         {
         spotId: 5,
-        url: 'image/butterflymansion',
+        url: 'https://i.imgur.com/f2mTbVR.png',
         preview: true
         }
     ]);

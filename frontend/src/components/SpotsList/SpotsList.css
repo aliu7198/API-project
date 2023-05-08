@@ -1,1 +1,8 @@
-/* TODO: SpotsList styles */
+#spotsList-wrapper {
+    margin: 1em 2em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(15em, 100%/4)), 1fr));
+    justify-items: center;
+    align-items: center;
+    /* TODO: make columns adjust as browser is resized */
+}

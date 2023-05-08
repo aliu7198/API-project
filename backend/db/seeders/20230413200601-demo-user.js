@@ -45,6 +45,13 @@ module.exports = {
         email: 'shinobu.kocho@demonslayercorps.io',
         username: 'InsectPillar10',
         hashedPassword: bcrypt.hashSync('poisonbutterfly6')
+      },
+      {
+        firstName: 'Sakonji',
+        lastName: 'Urokodaki',
+        email: 'sakonji.urokodaki@demonslayercorps.io',
+        username: 'OldMountainHermit',
+        hashedPassword: bcrypt.hashSync('waterbreathing10')
       }
     ], {});
   },

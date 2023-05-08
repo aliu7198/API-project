@@ -14,13 +14,13 @@ const SpotsList = () => {
     }, [dispatch])
 
     return (
-        <>
+        <div id="spotsList-wrapper">
             {spotsArr.length > 0 && spotsArr.map(spot => (
                 <>
                     <SpotCard spot={spot}/>
                 </>
             ))}
-        </>
+        </div>
     )
 }
 
