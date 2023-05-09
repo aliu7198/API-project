@@ -11,7 +11,7 @@ const SpotDetailsPage = () => {
 
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
-  }, [dispatch, spotId]);
+  }, [dispatch]);
   // needed to include spotId in dependency array according to ESLinter?
 
   const handleClick = () => {
@@ -30,7 +30,7 @@ const SpotDetailsPage = () => {
       <div id="img-wrapper">
         {spot.SpotImages.length > 0 &&
           spot.SpotImages.map((spotImage) => (
-            <img src={spotImage.url} alt={spot.name} />
+            <img key={spotImage.id} src={spotImage.url} alt={spot.name} />
           ))}
       </div>
       <div id="text-wrapper">
