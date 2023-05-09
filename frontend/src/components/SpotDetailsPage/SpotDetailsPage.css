@@ -1,1 +1,4 @@
 /* TODO: Spot Details Page Styles */
+#spot-details-wrapper {
+    max-width: 1000px;
+}

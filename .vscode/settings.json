@@ -15,5 +15,5 @@
         "Tomioka",
         "Zenitsu"
     ],
-    "prettier.printWidth": 150
+    "prettier.printWidth": 80
 }

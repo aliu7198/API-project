@@ -12,22 +12,22 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "image/kamadofamilyhome",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
         preview: true,
       },
       {
         spotId: 2,
-        url: "image/zenitsuapartment",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
         preview: true,
       },
       {
         spotId: 3,
-        url: "image/inosukecave",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
         preview: true,
       },
       {
         spotId: 4,
-        url: "image/tomiokafamilydojo",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
         preview: true,
       },
       {

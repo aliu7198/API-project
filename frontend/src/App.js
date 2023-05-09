@@ -17,10 +17,10 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
-        <Route exact path="/spots">
+        <Route exact path="/">
           <SpotsList />
         </Route>
-        <Route path="/spots/:spotId">
+        <Route exact path="/spots/:spotId">
           <SpotDetailsPage />
         </Route>
         </Switch>}
