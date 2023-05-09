@@ -3,7 +3,7 @@ import "./SpotCard.css";
 
 const SpotCard = ({ spot }) => {
   return (
-    <Link to={`/api/spots/${spot.id}`} style={{ color: "black" }}>
+    <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
       <div id="spotcard-wrapper">
         <img src={spot.previewImage} alt={spot.name} />
         <div id="line-1">
@@ -11,7 +11,7 @@ const SpotCard = ({ spot }) => {
             {spot.city}, {spot.state}
           </span>
           <span>
-            <i class="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
             {spot.avgRating ? `  ${spot.avgRating}` : "New"}
           </span>
         </div>
