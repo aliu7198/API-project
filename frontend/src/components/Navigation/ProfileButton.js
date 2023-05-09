@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
@@ -39,14 +40,22 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const wrapperClassName = user ? "profile-createSpot-wrapper" : "";
 
   return (
     <>
+    <div className={wrapperClassName}>
+      {user && (
+        <Link exact to="/spots/new" id="create-spot-link">
+          Create a New Spot
+        </Link>
+      )}
       <button onClick={openMenu} className="profile-button">
         <i className="fa-solid fa-bars fa-sm" />
         <i className="fas fa-user-circle fa-xl" />
       </button>
-      <ul className={`dropdown ${ulClassName}`} ref={ulRef}>
+    </div>
+      <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <div id="dropdown-wrapper">
             <div id="user-info">
@@ -57,13 +66,23 @@ function ProfileButton({ user }) {
               <li>Manage Spots</li>
             </div>
             <li id="logout-button-wrapper">
-              <button id="logout-button" onClick={logout}>Log Out</button>
+              <button id="logout-button" onClick={logout}>
+                Log Out
+              </button>
             </li>
           </div>
         ) : (
           <>
-            <OpenModalMenuItem itemText="Log In" onItemClick={closeMenu} modalComponent={<LoginFormModal />} />
-            <OpenModalMenuItem itemText="Sign Up" onItemClick={closeMenu} modalComponent={<SignupFormModal />} />
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
           </>
         )}
       </ul>
