@@ -47,7 +47,7 @@ const SpotDetailsPage = () => {
           night
           <span>
             <i className="fa-solid fa-star"></i>
-            {spot.avgStarRating ? `  ${spot.avgStarRating}` : " New"} ·{" "}
+            {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"} ·{" "}
             {spot.numReviews} {spot.numReviews === 1 ? "review" : "reviews"}
           </span>
         </div>

@@ -2,7 +2,14 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_SPOTS = "spots/allSpots"
 const GET_SINGLE_SPOT = "spots/singleSpot";
-const CREATE_SPOT = "spots/createSpot"
+const CREATE_SPOT = "spots/createSpot";
+const CREATE_SPOT_IMAGE = "spots/createSpotImage";
+
+// create images thunk - accept createdSpot and images array from action param
+// accept an array of images
+// for loop to fetch all images
+// dispatch to create spot
+// maybe DM daniel about this??
 
 const allSpotsAction = spots => {
     return {
@@ -22,6 +29,13 @@ const createSpotAction = spot => {
     return {
         type: CREATE_SPOT,
         spot
+    }
+}
+
+const createSpotImageAction = image => {
+    return {
+        type: CREATE_SPOT_IMAGE,
+        image
     }
 }
 
@@ -57,9 +71,27 @@ export const createSpotThunk = (spot) => async dispatch => {
     });
 
     if (response.ok) {
-        const spot = await response.json();
-        dispatch(createSpotAction(spot))
-        return spot;
+        const createdSpot = await response.json();
+        dispatch(createSpotAction(createdSpot))
+        return createdSpot;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
+export const createSpotImagesThunk = (createdSpot, images) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(images)
+    });
+
+    if (response.ok) {
+        // this is an object
+        const createdSpotImages = await response.json();
+        dispatch(createSpotImageAction(createdSpotImages));
+        return createdSpotImages;
     } else {
         const errors = await response.json();
         return errors;
@@ -85,6 +117,11 @@ const spotsReducer = (state = initialState, action) => {
         case CREATE_SPOT: {
             newState = {...state, allSpots: {}, singleSpot: {}}
             newState.allSpots[action.spot.id] = action.spot
+            return newState
+        }
+        case CREATE_SPOT_IMAGE: {
+            newState = {...state, allSpots: {}, singleSpot: {...state.singleSpot, SpotImages: []}}
+            newState.singleSpot.SpotImages[action.image.id] = action.image
             return newState
         }
         default:

@@ -12,7 +12,7 @@ const SpotCard = ({ spot }) => {
           </span>
           <span>
             <i className="fa-solid fa-star"></i>
-            {spot.avgRating ? ` ${spot.avgRating}` : " New"}
+            {+spot.avgRating > 0 ? `  ${spot.avgRating}` : " New"}
           </span>
         </div>
         <p>

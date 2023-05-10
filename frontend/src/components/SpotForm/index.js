@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { createSpotThunk } from "../../store/spots";
+import { createSpotImagesThunk, createSpotThunk } from "../../store/spots";
 import "./SpotForm.css";
 
 // reset form when exiting page
@@ -22,8 +22,23 @@ const SpotForm = ({ spot, formType }) => {
   const [imgURL3, setImgURL3] = useState("");
   const [imgURL4, setImgURL4] = useState("");
   const [imgURL5, setImgURL5] = useState("");
+//   const [country, setCountry] = useState(spot?.country);
+//   const [address, setAddress] = useState(spot?.address);
+//   const [city, setCity] = useState(spot?.city);
+//   const [state, setState] = useState(spot?.state);
+//   const [description, setDescription] = useState(spot?.description);
+//   const [name, setName] = useState(spot?.name);
+//   const [price, setPrice] = useState(spot?.price);
+//   const [previewImage, setPreviewImage] = useState(spot?.previewImage);
+//   //maybe we should put these in an object/array?
+//   const [imgURL2, setImgURL2] = useState(spot?.imgURL2);
+//   const [imgURL3, setImgURL3] = useState(spot?.imgURL3);
+//   const [imgURL4, setImgURL4] = useState(spot?.imgURL4);
+//   const [imgURL5, setImgURL5] = useState(spot?.imgURL5);
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
+//   const validImageURL = [".png", ".jpg", ".jpeg"];
+    // const validImages = [];
 
   useEffect(() => {
     const errors = {};
@@ -46,15 +61,15 @@ const SpotForm = ({ spot, formType }) => {
     ) {
       errors.previewImage = "Image URL must end in .png, .jpg, or .jpeg";
     }
-    if (
-      !(
-        imgURL2.endsWith(".png") ||
-        imgURL2.endsWith(".jpg") ||
-        imgURL2.endsWith(".jpeg")
-      )
-    ) {
-      errors.imgURL2 = "Image URL must end in .png, .jpg, or .jpeg";
-    }
+    // if (
+    //   !(
+    //     imgURL2.endsWith(".png") ||
+    //     imgURL2.endsWith(".jpg") ||
+    //     imgURL2.endsWith(".jpeg")
+    //   )
+    // ) {
+    //   errors.imgURL2 = "Image URL must end in .png, .jpg, or .jpeg";
+    // }
     setValidationErrors(errors);
     // TODO: image errors
   }, [country, address, city, state, description, name, price, previewImage]);
@@ -63,38 +78,66 @@ const SpotForm = ({ spot, formType }) => {
     e.preventDefault();
     setHasSubmitted(true);
 
-    console.log(validationErrors);
+    // console.log("validationErrors", validationErrors);
 
     if (Object.values(validationErrors).length) {
       return;
     }
 
-    const newSpot = {
+    spot = {
+      ...spot,
       country,
       address,
       city,
       state,
+      description,
       name,
       price,
-      previewImage,
+    //   previewImage,
     };
 
+    // const newSpot = {
+    //   country,
+    //   address,
+    //   city,
+    //   state,
+    //   description,
+    //   name,
+    //   price,
+    //   previewImage,
+    // };
+
+    const imgObj = ({
+        url: previewImage,
+        preview: true
+    })
+
+    let newSpot;
+    let newSpotImages;
+
+    if (formType === "Create Spot") {
+      newSpot = await dispatch(createSpotThunk(spot));
+      newSpotImages = await dispatch(createSpotImagesThunk(newSpot, imgObj));
+    } else if (formType === "Update Spot") {
+      // TODO: update spot
+    }
     console.log(newSpot);
 
-    // do we need to do this?
-    setCountry("");
-    setAddress("");
-    setCity("");
-    setState("");
-    setDescription("");
-    setName("");
-    setPrice("");
-    setPreviewImage("");
-    // TODO: reset images state
-    setValidationErrors({});
-    setHasSubmitted(false);
+    if (!newSpot.errors && !newSpotImages.errors) {
+      setCountry("");
+      setAddress("");
+      setCity("");
+      setState("");
+      setDescription("");
+      setName("");
+      setPrice("");
+      setPreviewImage("");
+      // TODO: reset images state
+      setValidationErrors({});
+      setHasSubmitted(false);
 
-    // history.push(`/spots/${newSpot.id}`)
+      history.push(`/spots/${newSpot.id}`);
+    }
   };
 
   return (

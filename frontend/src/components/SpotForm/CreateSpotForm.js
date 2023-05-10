@@ -9,6 +9,10 @@ const CreateSpotForm = () => {
         name: "",
         price: "",
         previewImage: "",
+        imgURL2: "",
+        imgURL3: "",
+        imgURL4: "",
+        imgURL5: "",
     }
     return (
         <SpotForm spot={spot} formType="Create Spot" />
