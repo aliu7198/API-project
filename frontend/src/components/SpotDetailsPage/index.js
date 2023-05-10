@@ -34,9 +34,9 @@ const SpotDetailsPage = () => {
           ))}
       </div>
       <div id="text-wrapper">
-        <h1 id="host">
+        <h2 id="host">
           Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
-        </h1>
+        </h2>
         <p id="description">{spot.description}</p>
       </div>
       <div id="detail-card">
@@ -47,7 +47,7 @@ const SpotDetailsPage = () => {
           night
           <span>
             <i className="fa-solid fa-star"></i>
-            {spot.avgStarRating ? `  ${spot.avgStarRating}` : "New"} ·{" "}
+            {spot.avgStarRating ? `  ${spot.avgStarRating}` : " New"} ·{" "}
             {spot.numReviews} {spot.numReviews === 1 ? "review" : "reviews"}
           </span>
         </div>

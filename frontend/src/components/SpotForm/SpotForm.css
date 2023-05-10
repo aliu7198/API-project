@@ -1,0 +1,49 @@
+/* ELEMENTS */
+.spotForm__input,
+.spotForm__textarea,
+.spotForm__input--bottom-margin {
+  width: 100%;
+}
+
+.spotForm__input--bottom-margin {
+  margin-bottom: 1em;
+}
+
+.spotForm__form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  max-width: 500px;
+}
+
+.spotForm__textarea {
+  background-color: rgb(233, 243, 255);
+  height: 10em;
+}
+
+.spotForm__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* MODIFIERS */
+.spotForm--bottom-border {
+  padding-bottom: 1em;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 1em;
+}
+
+/* IDs */
+#city-state-wrapper {
+  display: flex;
+}
+
+#price {
+  width: 95%;
+}
+
+#price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

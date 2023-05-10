@@ -14,8 +14,8 @@ li {
     border: 1px solid lightgrey;
     border-radius: 30px;
     padding: 5px 5px 5px 12px;
-    width: 73px;
-    height: 36px;
+    width: 70px;
+    height: 38px;
     background-color: transparent;
     display: flex;
     justify-content: space-between;
@@ -46,7 +46,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 11em;
+    width: 15em;
 }
 
 #create-spot-link {

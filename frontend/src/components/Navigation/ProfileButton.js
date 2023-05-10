@@ -46,13 +46,13 @@ function ProfileButton({ user }) {
     <>
     <div className={wrapperClassName}>
       {user && (
-        <Link exact to="/spots/new" id="create-spot-link">
+        <Link to="/spots/new" id="create-spot-link">
           Create a New Spot
         </Link>
       )}
       <button onClick={openMenu} className="profile-button">
-        <i className="fa-solid fa-bars fa-sm" />
-        <i className="fas fa-user-circle fa-xl" />
+        <i className="fa-solid fa-bars" />
+        <i className="fas fa-user-circle fa-2xl" />
       </button>
     </div>
       <ul className={ulClassName} ref={ulRef}>

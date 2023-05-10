@@ -12,32 +12,32 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png",
         preview: true,
       },
       {
         spotId: 2,
-        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png",
         preview: true,
       },
       {
         spotId: 3,
-        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png",
         preview: true,
       },
       {
         spotId: 4,
-        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png?width=763&height=671",
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105543080830062663/road-sign-361514_960_720.png",
         preview: true,
       },
       {
         spotId: 5,
-        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503300914249768/1f3c302c_original.png?width=1007&height=671",
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503300914249768/1f3c302c_original.png",
         preview: true,
       },
       {
         spotId: 5,
-        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503302214500443/ac66adb5_original.png?width=1007&height=671",
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503302214500443/ac66adb5_original.png",
         preview: false,
       },
       {
@@ -52,7 +52,7 @@ module.exports = {
       },
       {
         spotId: 5,
-        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503304085143682/3695eaec_original.png?width=1007&height=671",
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503304085143682/3695eaec_original.png",
         preview: false,
       },
     ]);
