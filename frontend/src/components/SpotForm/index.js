@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { createSpotImagesThunk, createSpotThunk } from "../../store/spots";
+import { createSpotThunk } from "../../store/spots";
 import "./SpotForm.css";
 
 // reset form when exiting page
@@ -9,80 +9,75 @@ import "./SpotForm.css";
 const SpotForm = ({ spot, formType }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [country, setCountry] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [description, setDescription] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const user = useSelector((state) => state.session.user);
+  // console.log(spot);
+  const [country, setCountry] = useState(spot?.country);
+  console.log('country-fail', country)
+  console.log('country', spot.country);
+  const [address, setAddress] = useState(spot?.address);
+  const [city, setCity] = useState(spot?.city);
+  const [state, setState] = useState(spot?.state);
+  const [description, setDescription] = useState(spot?.description);
+  const [name, setName] = useState(spot?.name);
+  const [price, setPrice] = useState(spot?.price);
+
   const [previewImage, setPreviewImage] = useState("");
-  //maybe we should put these in an object/array?
   const [imgURL2, setImgURL2] = useState("");
   const [imgURL3, setImgURL3] = useState("");
   const [imgURL4, setImgURL4] = useState("");
   const [imgURL5, setImgURL5] = useState("");
-//   const [country, setCountry] = useState(spot?.country);
-//   const [address, setAddress] = useState(spot?.address);
-//   const [city, setCity] = useState(spot?.city);
-//   const [state, setState] = useState(spot?.state);
-//   const [description, setDescription] = useState(spot?.description);
-//   const [name, setName] = useState(spot?.name);
-//   const [price, setPrice] = useState(spot?.price);
-//   const [previewImage, setPreviewImage] = useState(spot?.previewImage);
-//   //maybe we should put these in an object/array?
-//   const [imgURL2, setImgURL2] = useState(spot?.imgURL2);
-//   const [imgURL3, setImgURL3] = useState(spot?.imgURL3);
-//   const [imgURL4, setImgURL4] = useState(spot?.imgURL4);
-//   const [imgURL5, setImgURL5] = useState(spot?.imgURL5);
+  const [imageErrors, setImageErrors] = useState({});
+  const [validImageURLs, setValidImageURLs] = useState({});
+  const images = { previewImage, imgURL2, imgURL3, imgURL4, imgURL5 };
+
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
-//   const validImageURL = [".png", ".jpg", ".jpeg"];
-    // const validImages = [];
 
   useEffect(() => {
     const errors = {};
-    if (!country) errors.country = "Country is required";
-    if (!address) errors.address = "Address is required";
-    if (!city) errors.city = "City is required";
-    if (!state) errors.state = "State is required";
-    if (description.length < 30)
-      errors.description = "Description needs a minimum of 30 characters";
-    if (!name) errors.name = "Name is required";
-    if (!price) errors.price = "Price is required";
+    const validImages = {};
     if (!previewImage) {
       errors.previewImage = "Preview image is required";
-    } else if (
-      !(
-        previewImage.endsWith(".png") ||
-        previewImage.endsWith(".jpg") ||
-        previewImage.endsWith(".jpeg")
-      )
-    ) {
-      errors.previewImage = "Image URL must end in .png, .jpg, or .jpeg";
     }
-    // if (
-    //   !(
-    //     imgURL2.endsWith(".png") ||
-    //     imgURL2.endsWith(".jpg") ||
-    //     imgURL2.endsWith(".jpeg")
-    //   )
-    // ) {
-    //   errors.imgURL2 = "Image URL must end in .png, .jpg, or .jpeg";
-    // }
-    setValidationErrors(errors);
-    // TODO: image errors
-  }, [country, address, city, state, description, name, price, previewImage]);
+
+    for (let key in images) {
+      const url = images[key];
+      if (
+        url &&
+        !(url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jpeg"))
+      ) {
+        errors[`${key}`] = "Image URL must end in .png, .jpg, or .jpeg";
+      } else if (url) {
+        validImages[`${key}`] = url;
+      }
+    }
+
+    setValidImageURLs(validImages);
+    setImageErrors(errors);
+  }, [previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setValidationErrors({});
     setHasSubmitted(true);
 
-    // console.log("validationErrors", validationErrors);
-
-    if (Object.values(validationErrors).length) {
-      return;
+    const imageObjects = [];
+    for (let key in validImageURLs) {
+      const img = validImageURLs[key];
+      if (key === "previewImage") {
+        imageObjects.push({
+          url: img,
+          preview: true,
+        });
+      } else {
+        imageObjects.push({
+          url: img,
+          preview: false,
+        });
+      }
     }
+
+    console.log("images", imageObjects);
 
     spot = {
       ...spot,
@@ -93,37 +88,19 @@ const SpotForm = ({ spot, formType }) => {
       description,
       name,
       price,
-    //   previewImage,
+      imageObjects,
     };
 
-    // const newSpot = {
-    //   country,
-    //   address,
-    //   city,
-    //   state,
-    //   description,
-    //   name,
-    //   price,
-    //   previewImage,
-    // };
-
-    const imgObj = ({
-        url: previewImage,
-        preview: true
-    })
-
     let newSpot;
-    let newSpotImages;
-
     if (formType === "Create Spot") {
-      newSpot = await dispatch(createSpotThunk(spot));
-      newSpotImages = await dispatch(createSpotImagesThunk(newSpot, imgObj));
+      newSpot = await dispatch(createSpotThunk(spot, user));
     } else if (formType === "Update Spot") {
       // TODO: update spot
     }
-    console.log(newSpot);
 
-    if (!newSpot.errors && !newSpotImages.errors) {
+    console.log("newSpot", newSpot);
+
+    if (!newSpot.errors && !imageErrors) {
       setCountry("");
       setAddress("");
       setCity("");
@@ -132,18 +109,24 @@ const SpotForm = ({ spot, formType }) => {
       setName("");
       setPrice("");
       setPreviewImage("");
+      setImgURL2("");
+      setImgURL3("");
+      setImgURL4("");
+      setImgURL5("");
       // TODO: reset images state
       setValidationErrors({});
       setHasSubmitted(false);
 
       history.push(`/spots/${newSpot.id}`);
+    } else {
+      setValidationErrors(newSpot.errors);
     }
   };
 
   return (
     <div className="spotForm__wrapper">
       <form onSubmit={handleSubmit} className="spotForm__form">
-        <h2>Create a new Spot</h2>
+        <h2>{formType === 'Create Spot' ? 'Create a new Spot' : 'Update Your Spot'}</h2>
         <h3>Where's your place located?</h3>
         <p>
           Guests will only get your exact address once they book a reservation
@@ -272,7 +255,7 @@ const SpotForm = ({ spot, formType }) => {
             className="spotForm__input--bottom-margin"
           />
           <div className="errors">
-            {hasSubmitted && validationErrors.previewImage}
+            {hasSubmitted && imageErrors.previewImage}
           </div>
           <input
             type="text"
@@ -281,9 +264,7 @@ const SpotForm = ({ spot, formType }) => {
             placeholder="Image URL"
             className="spotForm__input--bottom-margin"
           />
-          <div className="errors">
-            {hasSubmitted && validationErrors.imgURL2}
-          </div>
+          <div className="errors">{hasSubmitted && imageErrors.imgURL2}</div>
           <input
             type="text"
             value={imgURL3}
@@ -291,6 +272,7 @@ const SpotForm = ({ spot, formType }) => {
             placeholder="Image URL"
             className="spotForm__input--bottom-margin"
           />
+          <div className="errors">{hasSubmitted && imageErrors.imgURL3}</div>
           <input
             type="text"
             value={imgURL4}
@@ -298,6 +280,7 @@ const SpotForm = ({ spot, formType }) => {
             placeholder="Image URL"
             className="spotForm__input--bottom-margin"
           />
+          <div className="errors">{hasSubmitted && imageErrors.imgURL4}</div>
           <input
             type="text"
             value={imgURL5}
@@ -305,6 +288,7 @@ const SpotForm = ({ spot, formType }) => {
             placeholder="Image URL"
             className="spotForm__input--bottom-margin"
           />
+          <div className="errors">{hasSubmitted && imageErrors.imgURL5}</div>
         </div>
         <button type="submit">Create Spot</button>
       </form>

@@ -63,7 +63,7 @@ function ProfileButton({ user }) {
               <li>{user.email}</li>
             </div>
             <div id="manage-spots">
-              <li>Manage Spots</li>
+              <Link to="/spots/current">Manage Spots</Link>
             </div>
             <li id="logout-button-wrapper">
               <button id="logout-button" onClick={logout}>

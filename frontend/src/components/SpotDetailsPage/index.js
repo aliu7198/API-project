@@ -8,11 +8,12 @@ const SpotDetailsPage = () => {
   const dispatch = useDispatch();
   const spotId = useParams().spotId;
   const spot = useSelector((state) => state.spots.singleSpot);
+  // console.log(spot);
 
+  // needed to include spotId in dependency array according to ESLinter?
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
   }, [dispatch]);
-  // needed to include spotId in dependency array according to ESLinter?
 
   const handleClick = () => {
     // TODO: Booking feature
