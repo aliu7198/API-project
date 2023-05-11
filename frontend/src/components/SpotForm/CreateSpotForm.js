@@ -89,11 +89,7 @@ const CreateSpotForm = () => {
     let newSpot;
     if (!Object.values(imageErrors).length) {
         newSpot = await dispatch(createSpotThunk(spot, user));
-        console.log("🚀 ~ file: CreateSpotForm.js:92 ~ handleSubmit ~ newSpot:", newSpot)
     }
-    console.log("🚀 ~ file: CreateSpotForm.js:93 ~ handleSubmit ~ imageErrors:", imageErrors)
-    console.log("🚀 ~ file: CreateSpotForm.js:94 ~ handleSubmit ~ !Object.values(imageErrors).length:", Object.values(imageErrors).length)
-    console.log("🚀 ~ file: CreateSpotForm.js:95 ~ handleSubmit ~ !newSpot.errors:", newSpot.errors)
 
     // if no errors in newSpot and no values in
     if (!newSpot.errors && !Object.values(imageErrors).length) {

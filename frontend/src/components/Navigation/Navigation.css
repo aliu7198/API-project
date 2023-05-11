@@ -17,9 +17,16 @@ ul {
   align-items: center;
   border-bottom: 1px lightgrey solid;
   background-color: white;
-  position: sticky;
+  /* TODO: fix this*/
+  /* position: fixed shows tiny gap at top of screen */
+  position: fixed;
 }
 
 .hidden {
   display: none;
+}
+
+#root {
+  /* WHY DOES DOING THIS ALMOST FIX IT?? */
+  border: 1px solid white;
 }
