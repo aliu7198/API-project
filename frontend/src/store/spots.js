@@ -4,7 +4,7 @@ const GET_ALL_SPOTS = "spots/allSpots"
 const GET_SINGLE_SPOT = "spots/singleSpot";
 const GET_USER_SPOTS = "spots/userSpots";
 const CREATE_SPOT = "spots/createSpot";
-const UPDATE_SPOT = "spots/updateSpot";
+const DELETE_SPOT = "spots/deleteSpot";
 
 /*****************************************************************************/
 
@@ -36,10 +36,10 @@ const createSpotAction = spot => {
     }
 }
 
-const updateSpotAction = spot => {
+const deleteSpotAction = spotId => {
     return {
-        type: UPDATE_SPOT,
-        spot
+        type: DELETE_SPOT,
+        spotId
     }
 }
 
@@ -129,10 +129,23 @@ export const updateSpotThunk = (spot, spotId) => async dispatch => {
             body: JSON.stringify(spot)
         });
         const updatedSpot = await response.json();
-        console.log(updatedSpot);
         dispatch(createSpotAction(updatedSpot))
         return updatedSpot;
     } catch (err) { // err is the response object if status code >= 400
+        const errors = await err.json();
+        return errors;
+    }
+}
+
+export const deleteSpotThunk = (spotId) => async dispatch => {
+    try {
+        const response = await csrfFetch(`/api/spots/${spotId}`, {
+            method: "DELETE"
+        });
+        const deletedSpot = await response.json();
+        dispatch(deleteSpotAction(spotId));
+        return deletedSpot;
+    } catch (err) {
         const errors = await err.json();
         return errors;
     }
@@ -158,13 +171,20 @@ const spotsReducer = (state = initialState, action) => {
         }
         case GET_USER_SPOTS: {
             newState = {...state, allSpots: {}, singleSpot: {}}
-            newState.allSpots = action.spots.Spots
+            for (let spot of action.spots.Spots) {
+                newState.allSpots[spot.id] = spot
+            }
             return newState;
         }
         case CREATE_SPOT: {
             newState = {...state, allSpots: {}, singleSpot: {}}
             newState.allSpots[action.spot.id] = action.spot
             return newState
+        }
+        case DELETE_SPOT: {
+            newState = {...state, allSpots: {...state.allSpots}}
+            delete newState.allSpots[action.spotId];
+            return newState;
         }
         default:
             return state;
