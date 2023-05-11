@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteSpotThunk } from "../../store/spots";
 import "./DeleteSpotModal.css";
-import { useHistory } from "react-router-dom";
 
 const DeleteSpotModal = ({spot}) => {
-//   const history = useHistory();
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 

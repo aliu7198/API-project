@@ -1,25 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { singleSpotThunk, updateSpotThunk } from "../../store/spots";
+import { updateSpotThunk } from "../../store/spots";
 import "./SpotForm.css";
 
-// reset form when exiting page
-// show message under every empty field that is required when "create" is clicked
-const UpdateSpotForm = ({ isLoaded }) => {
+const UpdateSpotForm = ({ spot }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.session.user);
 
   const { spotId } = useParams();
-  // account for this being undefined on initial render
-  const spot = useSelector((state) => state.spots.singleSpot);
 
-  useEffect(() => {
-    dispatch(singleSpotThunk(spotId));
-  }, [dispatch, spotId]);
-
-  // set variables once all rendered using useEffect
   const [country, setCountry] = useState(spot.country);
   const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);
@@ -46,13 +36,6 @@ const UpdateSpotForm = ({ isLoaded }) => {
       price,
     };
 
-    // do something similar to this in useEffect
-    // what is this dispatch doing so that we can store it in the variable?
-    // another option: put everything in a wrapper
-      // useSelector inside wrapper
-      // useEffect for useStates
-      // conditionally render form if spot is prepopulated
-      // if spot exists, return form - if not, return null
     const newSpot = await dispatch(updateSpotThunk(spot, spotId));
 
     if (newSpot.errors) {
@@ -66,135 +49,130 @@ const UpdateSpotForm = ({ isLoaded }) => {
 
   return (
     <div className="spotForm__wrapper">
-      {isLoaded && (
-        <form onSubmit={handleSubmit} className="spotForm__form">
-          <h2>Update your Spot</h2>
-          <h3>Where's your place located?</h3>
-          <p>
-            Guests will only get your exact address once they book a reservation
-          </p>
-          <div className="spotForm__location spotForm--bottom-border">
-            <label htmlFor="country">
-              Country
-              <span className="errors">
-                {hasSubmitted && validationErrors?.country}
-              </span>
-              <input
-                id="country"
-                type="text"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                placeholder="Country"
-                className="spotForm__input"
-              />
-            </label>
-            <label htmlFor="address">
-              Street Address
-              <span className="errors">
-                {hasSubmitted && validationErrors?.address}
-              </span>
-              <input
-                id="address"
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Street Address"
-                className="spotForm__input"
-              />
-            </label>
-            <div id="city-state-wrapper">
-              <label htmlFor="city">
-                City
-                <span className="errors">
-                  {hasSubmitted && validationErrors?.city}
-                </span>
-                <input
-                  id="city"
-                  type="text"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  placeholder="City"
-                  className="spotForm__input"
-                />
-              </label>
-              <div>, </div>
-              <label htmlFor="state">
-                State
-                <span className="errors">
-                  {hasSubmitted && validationErrors?.state}
-                </span>
-                <input
-                  id="state"
-                  type="text"
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                  placeholder="STATE"
-                  className="spotForm__input"
-                />
-              </label>
-            </div>
-          </div>
-          <div className="spotForm__description spotForm--bottom-border">
-            <h3>Describe your place to guests</h3>
-            <p>
-              Mention the best features of your space, any special amenities
-              like fast wifi or parking, and what you love about the
-              neighborhood.
-            </p>
-            <textarea
-              id="description"
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Please write at least 30 characters"
-              className="spotForm__textarea"
-            />
-            <div className="errors">
-              {hasSubmitted && validationErrors?.description}
-            </div>
-          </div>
-          <div className="spotForm__title spotForm--bottom-border">
-            <h3>Create a title for your spot</h3>
-            <p>
-              Catch guests' attention with a spot title that highlights what
-              makes your place special.
-            </p>
+      <form onSubmit={handleSubmit} className="spotForm__form">
+        <h2>Update your Spot</h2>
+        <h3>Where's your place located?</h3>
+        <p>
+          Guests will only get your exact address once they book a reservation
+        </p>
+        <div className="spotForm__location spotForm--bottom-border">
+          <label htmlFor="country">
+            Country
+            <span className="errors">
+              {hasSubmitted && validationErrors?.country}
+            </span>
             <input
-              id="name"
+              id="country"
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name of your spot"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              placeholder="Country"
               className="spotForm__input"
             />
-            <div className="errors">
-              {hasSubmitted && validationErrors?.name}
-            </div>
-          </div>
-          <div className="spotForm__price spotForm--bottom-border">
-            <h3>Set a base price for your spot</h3>
-            <p>
-              Competitive pricing can help your listing stand out and rank
-              higher in search results.
-            </p>
-            <div id="price-wrapper">
-              <span>$</span>
+          </label>
+          <label htmlFor="address">
+            Street Address
+            <span className="errors">
+              {hasSubmitted && validationErrors?.address}
+            </span>
+            <input
+              id="address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Street Address"
+              className="spotForm__input"
+            />
+          </label>
+          <div id="city-state-wrapper">
+            <label htmlFor="city">
+              City
+              <span className="errors">
+                {hasSubmitted && validationErrors?.city}
+              </span>
               <input
-                id="price"
+                id="city"
                 type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                placeholder="Price per night (USD)"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="City"
+                className="spotForm__input"
               />
-            </div>
-            <div className="errors">
-              {hasSubmitted && validationErrors?.price}
-            </div>
+            </label>
+            <div>, </div>
+            <label htmlFor="state">
+              State
+              <span className="errors">
+                {hasSubmitted && validationErrors?.state}
+              </span>
+              <input
+                id="state"
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                placeholder="STATE"
+                className="spotForm__input"
+              />
+            </label>
           </div>
-          {/* BONUS TODO: update spot images */}
-          <button type="submit">Update your Spot</button>
-        </form>
-      )}
+        </div>
+        <div className="spotForm__description spotForm--bottom-border">
+          <h3>Describe your place to guests</h3>
+          <p>
+            Mention the best features of your space, any special amenities like
+            fast wifi or parking, and what you love about the neighborhood.
+          </p>
+          <textarea
+            id="description"
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Please write at least 30 characters"
+            className="spotForm__textarea"
+          />
+          <div className="errors">
+            {hasSubmitted && validationErrors?.description}
+          </div>
+        </div>
+        <div className="spotForm__title spotForm--bottom-border">
+          <h3>Create a title for your spot</h3>
+          <p>
+            Catch guests' attention with a spot title that highlights what makes
+            your place special.
+          </p>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name of your spot"
+            className="spotForm__input"
+          />
+          <div className="errors">{hasSubmitted && validationErrors?.name}</div>
+        </div>
+        <div className="spotForm__price spotForm--bottom-border">
+          <h3>Set a base price for your spot</h3>
+          <p>
+            Competitive pricing can help your listing stand out and rank higher
+            in search results.
+          </p>
+          <div id="price-wrapper">
+            <span>$</span>
+            <input
+              id="price"
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="Price per night (USD)"
+            />
+          </div>
+          <div className="errors">
+            {hasSubmitted && validationErrors?.price}
+          </div>
+        </div>
+        {/* BONUS TODO: update spot images */}
+        <button type="submit">Update your Spot</button>
+      </form>
     </div>
   );
 };

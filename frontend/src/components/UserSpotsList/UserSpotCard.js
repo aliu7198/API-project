@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { deleteSpotThunk } from "../../store/spots";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSpotModal from "../DeleteSpotModal";
 import "../SpotsList/SpotCard.css";
 
 const UserSpotCard = ({ spot }) => {
-  // const history = useHistory();
-  // const dispatch = useDispatch();
-  // console.log(spot);
-
   return (
     <div id="spotcard-wrapper">
       <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
