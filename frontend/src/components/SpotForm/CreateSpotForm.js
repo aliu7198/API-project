@@ -29,11 +29,24 @@ const CreateSpotForm = () => {
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
+
   useEffect(() => {
-    const errors = {};
+    // HANDLE VALIDATION ERRORS
+    const valErrors = {};
+    if (!country) valErrors.country = "Country is required";
+    if (!address) valErrors.address = "Address is required";
+    if (!city) valErrors.city = "City is required";
+    if (!state) valErrors.state = "State is required";
+    if (description.length < 30)
+      valErrors.description = "Description needs a minimum of 30 characters";
+    if (!name) valErrors.name = "Name is required";
+    if (!price) valErrors.price = "Price per night is required";
+
+    // HANDLE IMAGE ERRORS
+    const imgErrors = {};
     const validImages = {};
     if (!previewImage) {
-      errors.previewImage = "Preview image is required";
+      imgErrors.previewImage = "Preview image is required";
     }
 
     for (let key in images) {
@@ -42,19 +55,43 @@ const CreateSpotForm = () => {
         url &&
         !(url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jpeg"))
       ) {
-        errors[`${key}`] = "Image URL must end in .png, .jpg, or .jpeg";
+        imgErrors[`${key}`] = "Image URL must end in .png, .jpg, or .jpeg";
       } else if (url) {
         validImages[`${key}`] = url;
       }
     }
-
+    setValidationErrors(valErrors);
+    console.log("🚀 ~ file: CreateSpotForm.js:86 ~ useEffect ~ validationErrors:", validationErrors)
+    setImageErrors(imgErrors);
+    console.log("🚀 ~ file: CreateSpotForm.js:87 ~ useEffect ~ imageErrors:", imageErrors)
     setValidImageURLs(validImages);
-    setImageErrors(errors);
-  }, [previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
+  }, [country, address, city, state, description, name, price, previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
+
+  // useEffect(() => {
+  //   const errors = {};
+  //   const validImages = {};
+  //   if (!previewImage) {
+  //     errors.previewImage = "Preview image is required";
+  //   }
+
+  //   for (let key in images) {
+  //     const url = images[key];
+  //     if (
+  //       url &&
+  //       !(url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jpeg"))
+  //     ) {
+  //       errors[`${key}`] = "Image URL must end in .png, .jpg, or .jpeg";
+  //     } else if (url) {
+  //       validImages[`${key}`] = url;
+  //     }
+  //   }
+
+  //   setValidImageURLs(validImages);
+  //   setImageErrors(errors);
+  // }, [previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setValidationErrors({});
     setHasSubmitted(true);
 
     const imageObjects = [];
@@ -86,25 +123,12 @@ const CreateSpotForm = () => {
 
     let newSpot;
     if (!Object.values(imageErrors).length) {
-        newSpot = await dispatch(createSpotThunk(spot, user));
+      newSpot = await dispatch(createSpotThunk(spot, user));
+    } else {
+      return;
     }
 
-    // if no errors in newSpot and no values in
-    if (!newSpot.errors && !Object.values(imageErrors).length) {
-      setCountry("");
-      setAddress("");
-      setCity("");
-      setState("");
-      setDescription("");
-      setName("");
-      setPrice("");
-      setPreviewImage("");
-      setImgURL2("");
-      setImgURL3("");
-      setImgURL4("");
-      setImgURL5("");
-      setValidationErrors({});
-      setHasSubmitted(false);
+    if (!newSpot.errors) {
       history.push(`/spots/${newSpot.id}`);
     } else {
       setValidationErrors(newSpot.errors);
@@ -230,7 +254,9 @@ const CreateSpotForm = () => {
               placeholder="Price per night (USD)"
             />
           </div>
-          <div className="errors">{hasSubmitted && validationErrors?.price}</div>
+          <div className="errors">
+            {hasSubmitted && validationErrors?.price}
+          </div>
         </div>
         <div className="spotForm__images spotForm--bottom-border">
           <h3>Submit a link to at least one photo to publish your spot</h3>

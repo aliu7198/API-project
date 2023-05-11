@@ -12,13 +12,15 @@ const UpdateSpotForm = ({ isLoaded }) => {
   // const user = useSelector((state) => state.session.user);
 
   const { spotId } = useParams();
+  // account for this being undefined on initial render
   const spot = useSelector((state) => state.spots.singleSpot);
 
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
   }, [dispatch, spotId]);
 
-  const [country, setCountry] = useState(spot?.country);
+  // set variables once all rendered using useEffect
+  const [country, setCountry] = useState(spot.country);
   const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);
@@ -44,6 +46,13 @@ const UpdateSpotForm = ({ isLoaded }) => {
       price,
     };
 
+    // do something similar to this in useEffect
+    // what is this dispatch doing so that we can store it in the variable?
+    // another option: put everything in a wrapper
+      // useSelector inside wrapper
+      // useEffect for useStates
+      // conditionally render form if spot is prepopulated
+      // if spot exists, return form - if not, return null
     const newSpot = await dispatch(updateSpotThunk(spot, spotId));
 
     if (newSpot.errors) {
