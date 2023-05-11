@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import {
-  singleSpotThunk,
-  updateSpotThunk
-} from "../../store/spots";
+import { singleSpotThunk, updateSpotThunk } from "../../store/spots";
 import "./SpotForm.css";
 
 // reset form when exiting page
@@ -19,7 +16,7 @@ const UpdateSpotForm = ({ isLoaded }) => {
 
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
-  }, [dispatch]);
+  }, [dispatch, spotId]);
 
   const [country, setCountry] = useState(spot?.country);
   const [address, setAddress] = useState(spot?.address);
@@ -32,58 +29,10 @@ const UpdateSpotForm = ({ isLoaded }) => {
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
-  //   const [previewImage, setPreviewImage] = useState("");
-  //   const [imgURL2, setImgURL2] = useState("");
-  //   const [imgURL3, setImgURL3] = useState("");
-  //   const [imgURL4, setImgURL4] = useState("");
-  //   const [imgURL5, setImgURL5] = useState("");
-  //   const [imageErrors, setImageErrors] = useState({});
-  //   const [validImageURLs, setValidImageURLs] = useState({});
-  //   const images = { previewImage, imgURL2, imgURL3, imgURL4, imgURL5 };
-
-  //   useEffect(() => {
-  //     const errors = {};
-  //     const validImages = {};
-  //     if (!previewImage) {
-  //       errors.previewImage = "Preview image is required";
-  //     }
-
-  //     for (let key in images) {
-  //       const url = images[key];
-  //       if (
-  //         url &&
-  //         !(url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jpeg"))
-  //       ) {
-  //         errors[`${key}`] = "Image URL must end in .png, .jpg, or .jpeg";
-  //       } else if (url) {
-  //         validImages[`${key}`] = url;
-  //       }
-  //     }
-
-  //     setValidImageURLs(validImages);
-  //     setImageErrors(errors);
-  //   }, [previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setValidationErrors({});
     setHasSubmitted(true);
-
-    // const imageObjects = [];
-    // for (let key in validImageURLs) {
-    //   const img = validImageURLs[key];
-    //   if (key === "previewImage") {
-    //     imageObjects.push({
-    //       url: img,
-    //       preview: true,
-    //     });
-    //   } else {
-    //     imageObjects.push({
-    //       url: img,
-    //       preview: false,
-    //     });
-    //   }
-    // }
 
     const spot = {
       country,
@@ -93,7 +42,6 @@ const UpdateSpotForm = ({ isLoaded }) => {
       description,
       name,
       price,
-      //   imageObjects,
     };
 
     const newSpot = await dispatch(updateSpotThunk(spot, spotId));
@@ -234,53 +182,7 @@ const UpdateSpotForm = ({ isLoaded }) => {
               {hasSubmitted && validationErrors?.price}
             </div>
           </div>
-          {/* BONUS FEATURE: UPDATE SPOT IMAGES */}
-          {/* <div className="spotForm__images spotForm--bottom-border">
-          <h3>Submit a link to at least one photo to publish your spot</h3>
-          <p>Submit a link to at least one photo to publish your spot.</p>
-          <input
-            type="text"
-            value={previewImage}
-            onChange={(e) => setPreviewImage(e.target.value)}
-            placeholder="Image URL"
-            className="spotForm__input--bottom-margin"
-          />
-          <div className="errors">
-            {hasSubmitted && imageErrors?.previewImage}
-          </div>
-          <input
-            type="text"
-            value={imgURL2}
-            onChange={(e) => setImgURL2(e.target.value)}
-            placeholder="Image URL"
-            className="spotForm__input--bottom-margin"
-          />
-          <div className="errors">{hasSubmitted && imageErrors?.imgURL2}</div>
-          <input
-            type="text"
-            value={imgURL3}
-            onChange={(e) => setImgURL3(e.target.value)}
-            placeholder="Image URL"
-            className="spotForm__input--bottom-margin"
-          />
-          <div className="errors">{hasSubmitted && imageErrors?.imgURL3}</div>
-          <input
-            type="text"
-            value={imgURL4}
-            onChange={(e) => setImgURL4(e.target.value)}
-            placeholder="Image URL"
-            className="spotForm__input--bottom-margin"
-          />
-          <div className="errors">{hasSubmitted && imageErrors?.imgURL4}</div>
-          <input
-            type="text"
-            value={imgURL5}
-            onChange={(e) => setImgURL5(e.target.value)}
-            placeholder="Image URL"
-            className="spotForm__input--bottom-margin"
-          />
-          <div className="errors">{hasSubmitted && imageErrors?.imgURL5}</div>
-        </div> */}
+          {/* BONUS TODO: update spot images */}
           <button type="submit">Update your Spot</button>
         </form>
       )}

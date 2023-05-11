@@ -1,5 +1,6 @@
 #spotsList-wrapper {
-    margin: 1em 2em;
+    margin: 70px 2em;
+    padding: 1em 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(15em, 100%/4)), 1fr));
     justify-items: center;
