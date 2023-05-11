@@ -2,22 +2,14 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpotThunk } from "../../store/spots";
+import OpenModalButton from "../OpenModalButton";
+import DeleteSpotModal from "../DeleteSpotModal";
 import "../SpotsList/SpotCard.css";
 
 const UserSpotCard = ({ spot }) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+  // const history = useHistory();
+  // const dispatch = useDispatch();
   // console.log(spot);
-
-  // TODO: Make delete modal and move this inside of that component
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    const deletedSpot = await dispatch(deleteSpotThunk(spot.id));
-
-    if (Object.values(deletedSpot).length) {
-      history.push('/spots/current');
-    }
-  }
 
   return (
     <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
@@ -38,7 +30,8 @@ const UserSpotCard = ({ spot }) => {
         <div id="spotcard__buttons">
             <Link to={`/spots/${spot.id}/edit`}><button>Update</button></Link>
             {/* TODO: Open Delete Spot Modal on click */}
-            <button onClick={handleDelete}>Delete</button>
+            {/* <button onClick={handleDelete}>Delete</button> */}
+            <OpenModalButton modalComponent={<DeleteSpotModal spot={spot}/>} buttonText="Delete"/>
         </div>
       </div>
     </Link>
