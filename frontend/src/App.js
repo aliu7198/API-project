@@ -34,7 +34,7 @@ function App() {
             <SpotDetailsPage />
           </Route>
           <Route exact path="/spots/:spotId/edit">
-            <UpdateSpotForm />
+            <UpdateSpotForm isLoaded={isLoaded}/>
           </Route>
         </Switch>
       )}

@@ -4,7 +4,7 @@ const GET_ALL_SPOTS = "spots/allSpots"
 const GET_SINGLE_SPOT = "spots/singleSpot";
 const GET_USER_SPOTS = "spots/userSpots";
 const CREATE_SPOT = "spots/createSpot";
-const CREATE_SPOT_IMAGE = "spots/createSpotImage";
+const UPDATE_SPOT = "spots/updateSpot";
 
 /*****************************************************************************/
 
@@ -36,10 +36,10 @@ const createSpotAction = spot => {
     }
 }
 
-const createSpotImageAction = image => {
+const updateSpotAction = spot => {
     return {
-        type: CREATE_SPOT_IMAGE,
-        image
+        type: UPDATE_SPOT,
+        spot
     }
 }
 
@@ -108,7 +108,6 @@ export const createSpotThunk = (spot, user) => async dispatch => {
 // dispatch to create spot
 
 export const createSpotImagesThunk = (createdSpot, images) => async dispatch => {
-    console.log('images', images);
     for (let image of images) {
         const response = await csrfFetch(`/api/spots/${createdSpot.id}/images`, {
             method: 'POST',
@@ -122,6 +121,23 @@ export const createSpotImagesThunk = (createdSpot, images) => async dispatch => 
     return createdSpot;
 }
 
+export const updateSpotThunk = (spot, spotId) => async dispatch => {
+    try {
+        const response = await csrfFetch(`/api/spots/${spotId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(spot)
+        });
+        const updatedSpot = await response.json();
+        console.log(updatedSpot);
+        dispatch(createSpotAction(updatedSpot))
+        return updatedSpot;
+    } catch (err) { // err is the response object if status code >= 400
+        const errors = await err.json();
+        return errors;
+    }
+}
+
 /*****************************************************************************/
 
 const initialState = {allSpots: {}, singleSpot: {}}
@@ -130,9 +146,9 @@ const spotsReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_ALL_SPOTS: {
             newState = {...state, allSpots: {}, singleSpot: {}}
-            action.spots.forEach(spot => {
+            for (let spot of action.spots) {
                 newState.allSpots[spot.id] = spot
-            });
+            }
             return newState;
         }
         case GET_SINGLE_SPOT: {

@@ -4,8 +4,6 @@ import { useHistory } from "react-router-dom";
 import { createSpotThunk } from "../../store/spots";
 import "./SpotForm.css";
 
-// reset form when exiting page
-// show message under every empty field that is required when "create" is clicked
 const CreateSpotForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
