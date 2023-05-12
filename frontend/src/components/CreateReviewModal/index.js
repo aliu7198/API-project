@@ -26,7 +26,7 @@ const CreateReviewModal = ({ spot }) => {
       setFormErrors(errors);
   }, [review, stars])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setValidationErrors({});
 
@@ -36,26 +36,13 @@ const CreateReviewModal = ({ spot }) => {
     };
 
     return dispatch(createReviewThunk(newReview, spot.id, user))
-        .then(dispatch(getSpotReviewsThunk(spot.id)))
+        .then(dispatch(singleSpotThunk(spot.id)))
         .then(closeModal)
-        .then(history.push(`/spots/${spot.id}`));
-
-    // const createdReview = await dispatch(createReviewThunk(newReview, spot.id));
-
-
-    // if (createdReview.errors) {
-    //     setValidationErrors(createdReview.errors)
-    // } else {
-    //     await dispatch(singleSpotThunk(spot.id))
-    //     closeModal();
-    // }
   };
 
   const onChange = (number) => {
     setStars(parseInt(number));
   };
-
-//   console.log("🚀 ~ file: index.js:13 ~ CreateReviewModal ~ stars:", stars);
 
   return (
     <div className="wrapper">

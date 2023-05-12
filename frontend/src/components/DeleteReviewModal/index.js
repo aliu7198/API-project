@@ -11,7 +11,7 @@ const DeleteReviewModal = ({review, spotId}) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     return dispatch(deleteReviewThunk(review.id, spotId))
-
+        .then(dispatch(singleSpotThunk(spotId)))
         .then(closeModal)
   };
 

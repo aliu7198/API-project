@@ -17,9 +17,8 @@ const SpotDetailsPage = () => {
   const reviewsArr = Object.values(reviews).reverse();
 
   let userReview;
-  if (user && reviewsArr.length) {
+  if (user) {
     userReview = reviewsArr.find((review) => review.User.id === user.id);
-    console.log("🚀 ~ file: index.js:22 ~ SpotDetailsPage ~ userReview:", !userReview)
   }
 
   useEffect(() => {
