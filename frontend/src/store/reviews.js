@@ -34,29 +34,32 @@ export const getSpotReviewsThunk = (spotId) => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
     const data = await response.json();
-    console.log("🚀 ~ file: reviews.js:37 ~ getSpotReviewsThunk ~ data:", data)
     dispatch(getSpotReviewsAction(data.Reviews));
     return data;
   } catch (err) {
     const errors = await err.json();
-    console.log("🚀 ~ file: reviews.js:42 ~ getSpotReviewsThunk ~ errors:", errors)
     return errors;
   }
 };
 
-export const createReviewThunk = (review, spotId) => async dispatch => {
+export const createReviewThunk = (review, spotId, user) => async dispatch => {
     try {
         const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(review)
         });
+        // TODO: check response body in API docs and add missing keys
         const createdReview = await response.json();
+        createdReview.User = user;
+        createdReview.ReviewImages = [];
         dispatch(createReviewAction(createdReview));
         dispatch(getSpotReviewsThunk(spotId));
         return createdReview;
     } catch (err) {
+        console.log("🚀 ~ file: reviews.js:58 ~ createReviewThunk ~ err:", err)
         const errors = await err.json();
+        console.log("🚀 ~ file: reviews.js:60 ~ createReviewThunk ~ errors:", errors)
         return errors;
     }
 }

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { singleSpotThunk } from "../../store/spots";
+import { getSpotReviewsThunk } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import CreateReviewModal from "../CreateReviewModal";
 import SpotReviews from "./SpotReviews";
@@ -16,8 +17,9 @@ const SpotDetailsPage = () => {
   const reviewsArr = Object.values(reviews).reverse();
 
   let userReview;
-  if (user) {
+  if (user && reviewsArr.length) {
     userReview = reviewsArr.find((review) => review.User.id === user.id);
+    console.log("🚀 ~ file: index.js:22 ~ SpotDetailsPage ~ userReview:", !userReview)
   }
 
   useEffect(() => {

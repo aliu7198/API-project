@@ -4,39 +4,33 @@ import { getSpotReviewsThunk } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReviewModal from "../DeleteReviewModal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { singleSpotThunk } from "../../store/spots";
 // import { singleSpotThunk } from "../../store/spots";
 
 const SpotReviews = ({ spotId }) => {
-  //   console.log("~~~~~~~~ hits spot review component ~~~~~~~~~~~~~~~");
   const history = useHistory();
   const dispatch = useDispatch();
   const reviewsObj = useSelector((state) => state.reviews.spot);
   const user = useSelector((state) => state.session.user);
-  //   console.log("🚀 ~ file: SpotReviews.js:10 ~ SpotReviews ~  user:",  user)
-
-  //   console.log("~~~~~~~~~~ review state from use selector~~~~~~~~~", reviewsObj);
-
   const reviewsArr = Object.values(reviewsObj).reverse();
 
-  //   const reviewsArr = Object.values(reviewsObj);
-  const [isLoading, setIsLoading] = useState(true);
-
-  //   let userReview;
-  //   if (user) {
-  //     userReview = reviewsArr.find((review) => review.User.id === user.id);
-  //   }
+//   const [isLoading, setIsLoading] = useState(true);
 
 //   let spotReviews;
   useEffect(() => {
     // dispatch(singleSpotThunk(spotId));
-    const spotReviews = dispatch(getSpotReviewsThunk(spotId));
-    console.log("🚀 ~ file: SpotReviews.js:33 ~ useEffect ~ spotReviews:", spotReviews)
+    dispatch(getSpotReviewsThunk(spotId));
 
-    if (spotReviews.errors) {
-      reviewsArr = [];
-      history.push(`/spots/${spotId}`);
-    }
-    setIsLoading(false);
+    // DO I NEED THIS??
+    dispatch(singleSpotThunk(spotId));
+
+    // console.log("🚀 ~ file: SpotReviews.js:33 ~ useEffect ~ spotReviews:", spotReviews)
+
+    // if (spotReviews.errors) {
+    //   reviewsArr = [];
+    //   history.push(`/spots/${spotId}`);
+    // }
+    // setIsLoading(false);
   }, [dispatch, spotId]);
 
 
@@ -46,7 +40,7 @@ const SpotReviews = ({ spotId }) => {
     return res;
   };
 
-  if (isLoading) return <div>Loading...</div>;
+//   if (isLoading) return <div>Loading...</div>;
 
   if (!user) {
     return (
