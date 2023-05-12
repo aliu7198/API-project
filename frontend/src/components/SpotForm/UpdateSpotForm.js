@@ -10,7 +10,7 @@ const UpdateSpotForm = ({ spot }) => {
 
   const { spotId } = useParams();
 
-  const [country, setCountry] = useState(spot.country);
+  const [country, setCountry] = useState(spot?.country);
   const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);

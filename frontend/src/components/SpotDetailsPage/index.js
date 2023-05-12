@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { singleSpotThunk } from "../../store/spots";
-import "./SpotDetailsPage.css";
 import { useParams } from "react-router-dom";
+import { singleSpotThunk } from "../../store/spots";
+
+import SpotReviews from "./SpotReviews";
+import "./SpotDetailsPage.css";
 
 const SpotDetailsPage = () => {
   const dispatch = useDispatch();
   const spotId = useParams().spotId;
   const spot = useSelector((state) => state.spots.singleSpot);
-  // console.log(spot);
 
-  // needed to include spotId in dependency array according to ESLinter?
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
   }, [dispatch]);
@@ -20,7 +20,7 @@ const SpotDetailsPage = () => {
     return alert("Feature Coming Soon...");
   };
 
-  if (!Object.values(spot).length) return null;
+  if (!Object.values(spot).length) return <div>Loading...</div>;
 
   return (
     <div id="spot-details-wrapper">
@@ -42,17 +42,25 @@ const SpotDetailsPage = () => {
       </div>
       <div id="detail-card">
         <div>
-          <span style={{ fontWeight: "bold"}}>
-            ${spot.price.toFixed(2)}
-          </span>{" "}
+          <span style={{ fontWeight: "bold" }}>${spot.price.toFixed(2)}</span>{" "}
           night
           <span>
             <i className="fa-solid fa-star"></i>
-            {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"} ·{" "}
-            {spot.numReviews} {spot.numReviews === 1 ? "review" : "reviews"}
+            {+spot.avgStarRating > 0
+              ? `  ${spot.avgStarRating}`
+              : " New"} · {spot.numReviews}{" "}
+            {spot.numReviews === 1 ? "review" : "reviews"}
           </span>
         </div>
         <button onClick={handleClick}>Reserve</button>
+      </div>
+      <div>
+        <h2>
+          <i className="fa-solid fa-star"></i>
+          {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"}
+          {spot.numReviews ? (<span id='dot'>·</span>) : ""} {spot.numReviews ? (<span>{spot.numReviews} {spot.numReviews === 1 ? "review" : "reviews"}</span>) : ""}
+        </h2>
+        <SpotReviews spotId={spotId} />
       </div>
     </div>
   );
