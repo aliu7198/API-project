@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { singleSpotThunk } from "../../store/spots";
-
+import OpenModalButton from "../OpenModalButton";
+import CreateReviewModal from "../CreateReviewModal";
 import SpotReviews from "./SpotReviews";
 import "./SpotDetailsPage.css";
 
@@ -13,7 +14,12 @@ const SpotDetailsPage = () => {
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.spot);
   const reviewsArr = Object.values(reviews);
-  const userReview = reviewsArr.find((review) => review.User.id === user.id);
+
+  let userReview;
+  if (user) {
+    userReview = reviewsArr.find((review) => review.User.id === user.id);
+  }
+
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
   }, [dispatch]);
@@ -81,7 +87,7 @@ const SpotDetailsPage = () => {
         </h2>
         <div className="spot-details__post-review-btn">
           {user && !userReview && user.id !== spot.Owner.id ? (
-            <button>Post Your Review</button>
+            <OpenModalButton modalComponent={<CreateReviewModal spot={spot} />} buttonText="Post Your Review" />
           ) : (
             <div></div>
           )}

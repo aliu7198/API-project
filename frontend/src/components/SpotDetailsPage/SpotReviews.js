@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotReviewsThunk } from "../../store/reviews";
+import OpenModalButton from "../OpenModalButton";
+import DeleteReviewModal from "../DeleteReviewModal";
 
 const SpotReviews = ({ spotId }) => {
   console.log("~~~~~~~~ hits spot review component ~~~~~~~~~~~~~~~");
@@ -37,6 +39,7 @@ const SpotReviews = ({ spotId }) => {
             <h3>{review.User.firstName}</h3>
             <p id="date">{_reviewDate(review.createdAt)}</p>
             <p>{review.review}</p>
+            {user.id === review.User.id ? (<OpenModalButton buttonText="Delete" modalComponent={<DeleteReviewModal review={review} />}/>) : (<></>)}
           </div>
         ))}
       </div>) : (<div>Be the first to post a review!</div>)}
