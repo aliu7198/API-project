@@ -14,10 +14,31 @@ function LoginFormModal() {
 
   useEffect(() => {
     const errors = {};
-    if (credential.length < 4) errors.credential = 'Username must have at least 4 characters';
-    if (password.length < 6) errors.password = 'Password must have at least 6 characters';
+    if (credential.length < 4)
+      errors.credential = "Username must have at least 4 characters";
+    if (password.length < 6)
+      errors.password = "Password must have at least 6 characters";
     setInputErrors(errors);
-  }, [credential, password])
+  }, [credential, password]);
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    setErrors({});
+
+    const demoUser = {
+      credential: "ChildOfBrightness714",
+      password: "HinokamiKagura1",
+    };
+
+    return dispatch(sessionActions.login(demoUser))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,15 +51,13 @@ function LoginFormModal() {
           setErrors(data.errors);
         }
       });
-    };
+  };
 
-    return (
-      <div className="wrapper">
+  return (
+    <div className="wrapper">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-      {errors.credential && (
-        <p className="errors">{errors.credential}</p>
-      )}
+        {errors.credential && <p className="errors">{errors.credential}</p>}
         <label htmlFor="credential">
           Username or Email
           <br></br>
@@ -61,9 +80,18 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="At least 6 characters required"
-            />
+          />
         </label>
-        <button className='login-button' type="submit" disabled={Object.values(inputErrors).length}><span>Log In</span></button>
+        <button
+          className="login-button"
+          type="submit"
+          disabled={Object.values(inputErrors).length}
+        >
+          <span>Log In</span>
+        </button>
+        <button id="demo-user" onClick={demoLogin}>
+          Demo User
+        </button>
       </form>
     </div>
   );

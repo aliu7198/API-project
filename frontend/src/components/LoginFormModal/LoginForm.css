@@ -44,6 +44,13 @@ label {
     border: 1px solid lightgrey;
 }
 
+#demo-user {
+    font-size: 20px;
+    color: teal;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
 .wrapper,
 #modal-content {
     display: flex;
