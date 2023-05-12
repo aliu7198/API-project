@@ -4,7 +4,7 @@ import "./SpotCard.css";
 const SpotCard = ({ spot }) => {
   return (
     <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
-      <div id="spotcard-wrapper">
+      <div id="spotcard-wrapper" title={spot.name} >
         <img src={spot.previewImage} alt={spot.name} />
         <div id="line-1">
           <span style={{ fontWeight: "bold" }}>

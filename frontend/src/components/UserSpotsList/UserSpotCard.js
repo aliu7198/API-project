@@ -5,7 +5,7 @@ import "../SpotsList/SpotCard.css";
 
 const UserSpotCard = ({ spot }) => {
   return (
-    <div id="spotcard-wrapper">
+    <div id="spotcard-wrapper" title={spot.name} >
       <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
         <img src={spot.previewImage} alt={spot.name} />
         <div id="line-1">
@@ -26,8 +26,6 @@ const UserSpotCard = ({ spot }) => {
         <Link to={`/spots/${spot.id}/edit`}>
           <button>Update</button>
         </Link>
-        {/* TODO: Open Delete Spot Modal on click */}
-        {/* <button onClick={handleDelete}>Delete</button> */}
         <OpenModalButton
           modalComponent={<DeleteSpotModal spot={spot} />}
           buttonText="Delete"
