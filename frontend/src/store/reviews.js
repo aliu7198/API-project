@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { singleSpotThunk } from "./spots";
 
 const GET_SPOT_REVIEWS = "reviews/getSpotReviews";
 const CREATE_REVIEW = "reviews/createReview";
@@ -50,6 +51,7 @@ export const createReviewThunk = (review, spotId) => async dispatch => {
         });
         const createdReview = await response.json();
         dispatch(createReviewAction(createdReview));
+        dispatch(getSpotReviewsThunk(spotId));
         return createdReview;
     } catch (err) {
         const errors = await err.json();
@@ -57,13 +59,14 @@ export const createReviewThunk = (review, spotId) => async dispatch => {
     }
 }
 
-export const deleteReviewThunk = (reviewId) => async dispatch => {
+export const deleteReviewThunk = (reviewId, spotId) => async dispatch => {
     try {
         const response = await csrfFetch(`/api/reviews/${reviewId}`, {
             method: 'DELETE'
         });
         const deletedSpot = await response.json();
         dispatch(deleteReviewAction(reviewId));
+        dispatch(singleSpotThunk(spotId));
         return deletedSpot;
     } catch(err) {
         const errors = await err.json();
@@ -79,12 +82,12 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPOT_REVIEWS: {
       newState = { ...state, spot: {}, user: {} };
-      console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newState:", newState)
+    //   console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newState:", newState)
       for (let review of action.reviews) {
         newState.spot[review.id] = review;
-        console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newStateINSIDE:", newState)
+        // console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newStateINSIDE:", newState)
       }
-      console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newStateFINAL:", newState)
+    //   console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newStateFINAL:", newState)
       return newState;
     }
     case CREATE_REVIEW: {
