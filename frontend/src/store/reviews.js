@@ -57,9 +57,7 @@ export const createReviewThunk = (review, spotId, user) => async dispatch => {
         dispatch(getSpotReviewsThunk(spotId));
         return createdReview;
     } catch (err) {
-        console.log("🚀 ~ file: reviews.js:58 ~ createReviewThunk ~ err:", err)
         const errors = await err.json();
-        console.log("🚀 ~ file: reviews.js:60 ~ createReviewThunk ~ errors:", errors)
         return errors;
     }
 }

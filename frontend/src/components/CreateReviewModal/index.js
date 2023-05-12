@@ -8,23 +8,22 @@ import StarsInput from "./StarsInput";
 import "./CreateReviewModal.css";
 
 const CreateReviewModal = ({ spot }) => {
-    const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
   const [formErrors, setFormErrors] = useState({});
   const [validationErrors, setValidationErrors] = useState({});
-  const user = useSelector(state => state.session.user);
-  console.log("🚀 ~ file: index.js:19 ~ CreateReviewModal ~ user:", user)
-
+  const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
-      const errors = {};
-      if (review.length < 10) errors.review = "Review must have least 10 characters";
-      if (!stars) errors.stars = "Review must have at least 1 star";
-      setFormErrors(errors);
-  }, [review, stars])
+    const errors = {};
+    if (review.length < 10)
+      errors.review = "Review must have least 10 characters";
+    if (!stars) errors.stars = "Review must have at least 1 star";
+    setFormErrors(errors);
+  }, [review, stars]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,8 +35,8 @@ const CreateReviewModal = ({ spot }) => {
     };
 
     return dispatch(createReviewThunk(newReview, spot.id, user))
-        .then(dispatch(singleSpotThunk(spot.id)))
-        .then(closeModal)
+      .then(dispatch(singleSpotThunk(spot.id)))
+      .then(closeModal);
   };
 
   const onChange = (number) => {
@@ -47,23 +46,23 @@ const CreateReviewModal = ({ spot }) => {
   return (
     <div className="wrapper">
       <h1>How Was Your Stay?</h1>
-        {/* {validationErrors} */}
+      {validationErrors.message && (
+        <p className="errors">{validationErrors.message}</p>
+      )}
       <form onSubmit={handleSubmit}>
-      <textarea
-        value={review}
-        onChange={(e) => setReview(e.target.value)}
-        placeholder="Leave your review here..."
-      />
-      {/* STARS */}
-      <StarsInput stars={stars} onChange={onChange} />
-      {/* button is disabled until 10 char in textarea and star rating has at least 1 star */}
-      <button
-        type="submit"
-        disabled={Object.values(formErrors).length}
-        className="create-review-modal__submit-btn"
-      >
-        Submit Your Review
-      </button>
+        <textarea
+          value={review}
+          onChange={(e) => setReview(e.target.value)}
+          placeholder="Leave your review here..."
+        />
+        <StarsInput stars={stars} onChange={onChange} />
+        <button
+          type="submit"
+          disabled={Object.values(formErrors).length}
+          className="create-review-modal__submit-btn"
+        >
+          Submit Your Review
+        </button>
       </form>
     </div>
   );
