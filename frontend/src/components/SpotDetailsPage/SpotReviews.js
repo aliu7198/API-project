@@ -6,6 +6,9 @@ const SpotReviews = ({ spotId }) => {
   console.log("~~~~~~~~ hits spot review component ~~~~~~~~~~~~~~~");
   const dispatch = useDispatch();
   const reviewsObj = useSelector((state) => state.reviews.spot);
+  const user = useSelector((state) => state.session.user);
+//   console.log("🚀 ~ file: SpotReviews.js:10 ~ SpotReviews ~  user:",  user)
+
   console.log("~~~~~~~~~~ review state from use selector~~~~~~~~~", reviewsObj);
 
   const reviewsArr = reviewsObj ? Object.values(reviewsObj) : [];
@@ -26,24 +29,17 @@ const SpotReviews = ({ spotId }) => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (!reviewsArr.length) {
-    return (
-      <>
-        <button>Post Your Review</button>
-        <div>Be the first to post a review!</div>
-      </>
-    );
-  }
-
   return (
-    <div className="spot-details__reviews-wrapper">
-      {reviewsArr.map((review) => (
-        <div key={review.id} className="spot-details__review">
-          <h3>{review.User.firstName}</h3>
-          <p id="date">{_reviewDate(review.createdAt)}</p>
-          <p>{review.review}</p>
-        </div>
-      ))}
+    <div className="reviews__wrapper">
+        {reviewsArr.length ? (<div >
+        {reviewsArr.map((review) => (
+          <div key={review.id} className="reviews__review">
+            <h3>{review.User.firstName}</h3>
+            <p id="date">{_reviewDate(review.createdAt)}</p>
+            <p>{review.review}</p>
+          </div>
+        ))}
+      </div>) : (<div>Be the first to post a review!</div>)}
     </div>
   );
 };

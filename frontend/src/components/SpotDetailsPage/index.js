@@ -10,7 +10,10 @@ const SpotDetailsPage = () => {
   const dispatch = useDispatch();
   const spotId = useParams().spotId;
   const spot = useSelector((state) => state.spots.singleSpot);
-
+  const user = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => state.reviews.spot);
+  const reviewsArr = Object.values(reviews);
+  const userReview = reviewsArr.find((review) => review.User.id === user.id);
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
   }, [dispatch]);
@@ -54,12 +57,35 @@ const SpotDetailsPage = () => {
         </div>
         <button onClick={handleClick}>Reserve</button>
       </div>
-      <div>
-        <h2>
+      {/* button shouldn't show if user not logged in
+      if spot doesn't belong to user and and user didn't post a review already
+      if (!reviewsArr.length) {
+        return (
+          <>
+          <button>Post Your Review</button>
+          </>
+          );
+          } */}
+      <div className="spot-details__reviews-wrapper">
+        <h2 className="spot-details__rating-reviews">
           <i className="fa-solid fa-star"></i>
           {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"}
-          {spot.numReviews ? (<span id='dot'>·</span>) : ""} {spot.numReviews ? (<span>{spot.numReviews} {spot.numReviews === 1 ? "review" : "reviews"}</span>) : ""}
+          {spot.numReviews ? <span id="dot">·</span> : ""}{" "}
+          {spot.numReviews ? (
+            <span>
+              {spot.numReviews} {spot.numReviews === 1 ? "review" : "reviews"}
+            </span>
+          ) : (
+            ""
+          )}
         </h2>
+        <div className="spot-details__post-review-btn">
+          {user && !userReview && user.id !== spot.Owner.id ? (
+            <button>Post Your Review</button>
+          ) : (
+            <div></div>
+          )}
+        </div>
         <SpotReviews spotId={spotId} />
       </div>
     </div>
