@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+// import { getSpotReviewsThunk } from "./reviews";
 
 const GET_ALL_SPOTS = "spots/allSpots"
 const GET_SINGLE_SPOT = "spots/singleSpot";
@@ -61,7 +62,7 @@ export const singleSpotThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`);
     if (response.ok) {
         const data = await response.json();
-        dispatch(singleSpotAction(data))
+        dispatch(singleSpotAction(data));
         return data;
     } else {
         const errors = await response.json();

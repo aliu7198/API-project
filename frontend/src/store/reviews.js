@@ -34,10 +34,12 @@ export const getSpotReviewsThunk = (spotId) => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
     const data = await response.json();
+    console.log("🚀 ~ file: reviews.js:37 ~ getSpotReviewsThunk ~ data:", data)
     dispatch(getSpotReviewsAction(data.Reviews));
     return data;
   } catch (err) {
     const errors = await err.json();
+    console.log("🚀 ~ file: reviews.js:42 ~ getSpotReviewsThunk ~ errors:", errors)
     return errors;
   }
 };
@@ -82,12 +84,9 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPOT_REVIEWS: {
       newState = { ...state, spot: {}, user: {} };
-    //   console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newState:", newState)
       for (let review of action.reviews) {
         newState.spot[review.id] = review;
-        // console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newStateINSIDE:", newState)
       }
-    //   console.log("🚀 ~ file: reviews.js:36 ~ reviewsReducer ~ newStateFINAL:", newState)
       return newState;
     }
     case CREATE_REVIEW: {

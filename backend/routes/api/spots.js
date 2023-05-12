@@ -130,7 +130,7 @@ router.get("/:spotId/reviews", async (req, res) => {
     ],
   });
 
-  if (!reviews.length) {
+  if (!req.params.spotId) {
     return res.status(404).json({
       message: "Spot couldn't be found",
     });

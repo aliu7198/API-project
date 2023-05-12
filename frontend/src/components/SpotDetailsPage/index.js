@@ -13,7 +13,7 @@ const SpotDetailsPage = () => {
   const spot = useSelector((state) => state.spots.singleSpot);
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.spot);
-  const reviewsArr = Object.values(reviews);
+  const reviewsArr = Object.values(reviews).reverse();
 
   let userReview;
   if (user) {
@@ -63,15 +63,6 @@ const SpotDetailsPage = () => {
         </div>
         <button onClick={handleClick}>Reserve</button>
       </div>
-      {/* button shouldn't show if user not logged in
-      if spot doesn't belong to user and and user didn't post a review already
-      if (!reviewsArr.length) {
-        return (
-          <>
-          <button>Post Your Review</button>
-          </>
-          );
-          } */}
       <div className="spot-details__reviews-wrapper">
         <h2 className="spot-details__rating-reviews">
           <i className="fa-solid fa-star"></i>
