@@ -8,8 +8,6 @@ const StarsInput = ({stars, onChange}) => {
         props.onMouseEnter = () => setActiveStars(number);
         props.onMouseLeave = () => setActiveStars(stars);
         props.onClick = () => {
-            // console.log("🚀 ~ file: StarsInput.js:20 ~ starIcon ~ stars:", stars)
-            // console.log("🚀 ~ file: StarsInput.js:13 ~ starIcon ~ number:", number)
             return onChange(number)
         };
         return (

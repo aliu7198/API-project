@@ -61,9 +61,7 @@ const CreateSpotForm = () => {
       }
     }
     setValidationErrors(valErrors);
-    // console.log("🚀 ~ file: CreateSpotForm.js:86 ~ useEffect ~ validationErrors:", validationErrors)
     setImageErrors(imgErrors);
-    // console.log("🚀 ~ file: CreateSpotForm.js:87 ~ useEffect ~ imageErrors:", imageErrors)
     setValidImageURLs(validImages);
   }, [country, address, city, state, description, name, price, previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
 

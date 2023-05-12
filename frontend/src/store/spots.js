@@ -95,7 +95,6 @@ export const createSpotThunk = (spot, user) => async dispatch => {
         createdSpot.numReviews = 0;
         createdSpot.avgStarRating = 0;
         createdSpot.Owner = user;
-        console.log(createdSpot);
         return dispatch(createSpotImagesThunk(createdSpot, spot.imageObjects)); // doesn't touch reducer
     } catch (err) { // err is the response object if status code >= 400
         const errors = await err.json();
