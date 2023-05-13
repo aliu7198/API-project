@@ -1,4 +1,4 @@
-import "./SpotImages.css"
+import "./SpotImages.css";
 
 const SpotImages = ({ spot }) => {
   const previewImage = spot.SpotImages.find((image) => image.preview === true);
@@ -7,16 +7,28 @@ const SpotImages = ({ spot }) => {
   );
 
   return (
+    // <div className="spot-images__wrapper">
+    //   <div className="spot-images__preview-image">
+    //     <img id="preview-image" src={previewImage.url} alt={spot.name} />
+    //   </div>
+    //   <div className="spot-images__other-images">
+    //     {otherImages.length > 0 &&
+    //       otherImages.map((spotImage) => (
+    //         <img key={spotImage.id} src={spotImage.url} alt={spot.name} id="other-image"/>
+    //       ))}
+    //   </div>
+    // </div>
     <div className="spot-images__wrapper">
-      <div className="spot-images__preview-image">
-        <img id="preview-image" src={previewImage.url} alt={spot.name} />
-      </div>
-      <div className="spot-images__other-images">
-        {otherImages.length > 0 &&
-          otherImages.map((spotImage) => (
-            <img key={spotImage.id} src={spotImage.url} alt={spot.name} id="other-image"/>
-          ))}
-      </div>
+      <img id="preview-image" src={previewImage.url} alt={spot.name} />
+      {otherImages.length > 0 &&
+        otherImages.map((spotImage) => (
+          <img
+            key={spotImage.id}
+            src={spotImage.url}
+            alt={spot.name}
+            id={`image-${otherImages.indexOf(spotImage)}`}
+          />
+        ))}
     </div>
   );
 };
