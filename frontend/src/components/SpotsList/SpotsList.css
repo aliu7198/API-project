@@ -1,9 +1,19 @@
 #spotsList-wrapper {
-    margin: 70px 2em;
-    padding: 1em 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(15em, 100%/4)), 1fr));
-    justify-items: center;
-    align-items: center;
-    /* TODO: make columns adjust as browser is resized */
+  --gap: 5px;
+  --num-cols: 4;
+
+  margin: 70px 0;
+  padding: 1em 30px;
+  display: grid;
+  grid-template-columns: repeat(var(--num-cols), 1fr);
+  gap: var(--gap);
+  justify-items: center;
+  align-items: center;
+  /* TODO: make columns adjust as browser is resized */
+}
+
+@media screen and (max-width: 1023px) {
+  #spotsList-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }

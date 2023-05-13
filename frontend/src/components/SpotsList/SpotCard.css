@@ -1,7 +1,7 @@
 .spot-card__image {
     object-fit: cover;
-    width: 15em;
-    height: 15em;
+    width: 14em;
+    height: 14em;
     border-radius: 15px;
 }
 
@@ -12,9 +12,9 @@
 }
 
 .spot-card__wrapper {
-    width: fit-content;
+    width: 14em;
     display: flex;
     flex-direction: column;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     cursor: pointer;
 }

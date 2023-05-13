@@ -110,7 +110,7 @@ module.exports = {
       },
       // 8
       {
-        ownerId: 10,
+        ownerId: 11,
         address: "123 Asteroid Lane",
         city: "Mars",
         state: "Solar System",
