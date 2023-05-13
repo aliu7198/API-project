@@ -40,30 +40,42 @@ const SpotDetailsPage = () => {
           {spot.city}, {spot.state}, {spot.country}
         </p>
         <SpotImages spot={spot} />
-        <div id="text-wrapper">
-          <h2 id="host">
-            Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
-          </h2>
-          <p id="description">{spot.description}</p>
-        </div>
-        <div className="spot-details__detail-card">
-          <div>
-            <span style={{ fontWeight: "bold" }}>${spot.price.toFixed(2)}</span>{" "}
-            night
-            <span>
-              <i className="fa-solid fa-star"></i>
-              {+spot.avgStarRating > 0
-                ? `  ${spot.avgStarRating}`
-                : " New"} · {spot.numReviews}{" "}
-              {spot.numReviews === 1 ? "review" : "reviews"}
-            </span>
+        <div className="spot-details__info-wrapper">
+          <div className="spot-details__host-description">
+            <h2 id="host">
+              Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
+            </h2>
+            <p id="description">{spot.description}</p>
           </div>
-          <button onClick={handleClick}>Reserve</button>
+          <div className="spot-details__detail-card">
+            <div className="spot-details__detail-card-line-1">
+              <div>
+                <h2 id="price" style={{ fontWeight: "bold" }}>
+                  ${spot.price.toFixed(2)}
+                </h2>{" "}
+                night
+              </div>
+              <div className="spot-details__detail-card-rating-reviews">
+                <span>
+                  <i className="fa-solid fa-star"></i>
+                  {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"}
+                </span>
+                <span id="dot">·</span>
+                <span>
+                  {spot.numReviews}{" "}
+                  {spot.numReviews === 1 ? "review" : "reviews"}
+                </span>
+              </div>
+            </div>
+            <button id="reserve-btn" onClick={handleClick}>
+              Reserve
+            </button>
+          </div>
         </div>
         <div className="spot-details__reviews-wrapper">
           <h2 className="spot-details__rating-reviews">
-            <i className="fa-solid fa-star"></i>
-            {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"}
+            <i className="fa-solid fa-star" />
+            {+spot.avgStarRating > 0 ? `${spot.avgStarRating}` : "New"}
             {spot.numReviews ? <span id="dot">·</span> : ""}{" "}
             {spot.numReviews ? (
               <span>
@@ -73,16 +85,16 @@ const SpotDetailsPage = () => {
               ""
             )}
           </h2>
-          <div className="spot-details__post-review-btn">
-            {user && !userReview && user.id !== spot.Owner.id ? (
+          {user && !userReview && user.id !== spot.Owner.id ? (
+            <div id="review-btn">
               <OpenModalButton
                 modalComponent={<CreateReviewModal spot={spot} />}
                 buttonText="Post Your Review"
               />
-            ) : (
-              <div></div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div></div>
+          )}
           <SpotReviews spotId={spotId} />
         </div>
       </div>

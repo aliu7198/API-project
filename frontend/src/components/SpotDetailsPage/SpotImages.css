@@ -4,11 +4,12 @@
     --num-cols: 4;
     --num-rows: 2;
 
-    padding: var(--gap);
     display: grid;
-    grid-template-columns: repeat(var(--num-cols), 220px);
-    grid-template-rows: repeat(var(--num-rows), 220px);
+    justify-content: center;
+    grid-template-columns: repeat(var(--num-cols), 230px);
+    grid-template-rows: repeat(var(--num-rows), 230px);
     gap: var(--gap);
+    margin-top: 1em;
 }
 
 .spot-images__wrapper > img {

@@ -1,0 +1,11 @@
+.reviews__review {
+    margin-bottom: 2em;
+}
+
+.reviews__wrapper {
+    margin: 1em 0;
+}
+
+#date {
+    color: grey;
+}

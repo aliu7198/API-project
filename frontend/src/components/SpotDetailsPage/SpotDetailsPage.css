@@ -1,20 +1,91 @@
-/* TODO: Spot Details Page Styles */
-
 .spot-details__detail-card {
-    border-bottom: 1px solid lightgrey
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 35%;
+  height: fit-content;
+  padding: 0.5em 1em;
+}
+
+.spot-details__detail-card-line-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.spot-details__host-description {
+  width: 65%;
+  padding-right: 1em;
+}
+
+.spot-details__info-wrapper {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
 }
 
 .spot-details__page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.spot-details__reviews-wrapper {
+  margin: 1em 0;
+}
+
+.spot-details__detail-card-rating-reviews,
+.spot-details__rating-reviews {
+  display: flex;
+  width: 7.5em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spot-details__rating-reviews {
+  margin: 5px 0;
 }
 
 .spot-details__wrapper {
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 70px 20px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 70px 20px;
+}
+
+/* IDs */
+
+#host {
+  margin-bottom: 10px;
+}
+
+#price {
+  display: inline;
+}
+
+#reserve-btn {
+  width: 100%;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 10px 0;
+  box-shadow: 0px 0px 10px lightgrey;
+}
+
+#review-btn > button {
+  margin: 5px 0;
+  font-size: 14px;
+  color: white;
+  padding: 1em;
+  background-color: grey;
+  box-shadow: 0px 0px 10px lightgrey;
+  border-radius: 10px;
 }

@@ -4,7 +4,7 @@ import { getSpotReviewsThunk } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReviewModal from "../DeleteReviewModal";
 import { singleSpotThunk } from "../../store/spots";
-
+import "./SpotReviews.css";
 
 const SpotReviews = ({ spotId }) => {
   const dispatch = useDispatch();

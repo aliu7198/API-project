@@ -15,11 +15,6 @@
   width: 49%;
 }
 
-#comma {
-  top: 35px;
-  position: relative;
-}
-
 .spotForm__input--bottom-margin {
   margin-bottom: 1em;
 }
@@ -50,7 +45,10 @@
 }
 
 /* IDs */
-
+#comma {
+  top: 35px;
+  position: relative;
+}
 
 #price {
   width: 95%;
