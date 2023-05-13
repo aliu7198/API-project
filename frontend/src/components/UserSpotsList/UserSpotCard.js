@@ -22,7 +22,7 @@ const UserSpotCard = ({ spot }) => {
           night
         </p>
       </Link>
-      <div className="spotcard__buttons">
+      <div className="spot-card__buttons">
         <Link to={`/spots/${spot.id}/edit`}>
           <button>Update</button>
         </Link>
