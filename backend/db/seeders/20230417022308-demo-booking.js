@@ -29,17 +29,17 @@ module.exports = {
         endDate: '2024-02-18',
       },
       {
-        spotId: 4,
-        userId: 1,
-        startDate: '2024-03-10',
-        endDate: '2024-03-17',
-      },
-      {
         spotId: 5,
         userId: 1,
         startDate: '2024-05-01',
         endDate: '2024-05-31',
-      }
+      },
+      {
+        spotId: 6,
+        userId: 1,
+        startDate: '2023-03-10',
+        endDate: '2023-04-20',
+      },
     ], {});
   },
 
