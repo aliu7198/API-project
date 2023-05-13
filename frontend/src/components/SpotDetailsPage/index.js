@@ -16,6 +16,8 @@ const SpotDetailsPage = () => {
   const reviews = useSelector((state) => state.reviews.spot);
   const reviewsArr = Object.values(reviews).reverse();
 
+  const ratingClass = spot.numReviews ? "spot-details__detail-card-rating-reviews" : "spot-details__detail-card-rating-only"
+
   let userReview;
   if (user) {
     userReview = reviewsArr.find((review) => review.User.id === user.id);
@@ -55,7 +57,7 @@ const SpotDetailsPage = () => {
                 </h2>{" "}
                 night
               </div>
-              <div className="spot-details__detail-card-rating-reviews">
+              {/* <div className="spot-details__detail-card-rating-reviews">
                 <span>
                   <i className="fa-solid fa-star"></i>
                   {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"}
@@ -65,6 +67,21 @@ const SpotDetailsPage = () => {
                   {spot.numReviews}{" "}
                   {spot.numReviews === 1 ? "review" : "reviews"}
                 </span>
+              </div> */}
+              <div className={ratingClass}>
+                <span id="star-rating">
+                  <i className="fa-solid fa-star" />
+                  {+spot.avgStarRating > 0 ? `${spot.avgStarRating}` : "New"}
+                </span>
+                {spot.numReviews ? <span id="dot">·</span> : ""}{" "}
+                {spot.numReviews ? (
+                  <span>
+                    {spot.numReviews}{" "}
+                    {spot.numReviews === 1 ? "review" : "reviews"}
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <button id="reserve-btn" onClick={handleClick}>
@@ -74,8 +91,10 @@ const SpotDetailsPage = () => {
         </div>
         <div className="spot-details__reviews-wrapper">
           <h2 className="spot-details__rating-reviews">
-            <i className="fa-solid fa-star" />
-            {+spot.avgStarRating > 0 ? `${spot.avgStarRating}` : "New"}
+            <span>
+              <i className="fa-solid fa-star" />{" "}
+              {+spot.avgStarRating > 0 ? `${spot.avgStarRating}` : "New"}
+            </span>
             {spot.numReviews ? <span id="dot">·</span> : ""}{" "}
             {spot.numReviews ? (
               <span>
