@@ -1,12 +1,20 @@
 /* TODO: Spot Details Page Styles */
-#spot-details-wrapper {
+
+.spot-details__detail-card {
+    border-bottom: 1px solid lightgrey
+}
+
+.spot-details__page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.spot-details__wrapper {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 70px 20px;
-}
-
-#detail-card {
-    border-bottom: 1px solid lightgrey
 }

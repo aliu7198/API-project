@@ -65,29 +65,6 @@ const CreateSpotForm = () => {
     setValidImageURLs(validImages);
   }, [country, address, city, state, description, name, price, previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
 
-  // useEffect(() => {
-  //   const errors = {};
-  //   const validImages = {};
-  //   if (!previewImage) {
-  //     errors.previewImage = "Preview image is required";
-  //   }
-
-  //   for (let key in images) {
-  //     const url = images[key];
-  //     if (
-  //       url &&
-  //       !(url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jpeg"))
-  //     ) {
-  //       errors[`${key}`] = "Image URL must end in .png, .jpg, or .jpeg";
-  //     } else if (url) {
-  //       validImages[`${key}`] = url;
-  //     }
-  //   }
-
-  //   setValidImageURLs(validImages);
-  //   setImageErrors(errors);
-  // }, [previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
@@ -170,8 +147,8 @@ const CreateSpotForm = () => {
               className="spotForm__input"
             />
           </label>
-          <div id="city-state-wrapper">
-            <label htmlFor="city">
+          <div className="spotForm__city-state-wrapper">
+            <label htmlFor="city" className="spotForm__city-label">
               City
               <span className="errors">
                 {hasSubmitted && validationErrors?.city}
@@ -185,8 +162,8 @@ const CreateSpotForm = () => {
                 className="spotForm__input"
               />
             </label>
-            <div>, </div>
-            <label htmlFor="state">
+            <div><p id="comma">,</p></div>
+            <label htmlFor="state" className="spotForm__state-label">
               State
               <span className="errors">
                 {hasSubmitted && validationErrors?.state}

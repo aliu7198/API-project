@@ -4,9 +4,9 @@ import "./SpotCard.css";
 const SpotCard = ({ spot }) => {
   return (
     <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
-      <div id="spotcard-wrapper" title={spot.name} >
-        <img src={spot.previewImage} alt={spot.name} />
-        <div id="line-1">
+      <div className="spot-card__wrapper" title={spot.name} >
+        <img className="spot-card__image" src={spot.previewImage} alt={spot.name} />
+        <div className="spot-card__line-1">
           <span style={{ fontWeight: "bold" }}>
             {spot.city}, {spot.state}
           </span>
@@ -15,7 +15,7 @@ const SpotCard = ({ spot }) => {
             {+spot.avgRating > 0 ? `  ${spot.avgRating}` : " New"}
           </span>
         </div>
-        <p>
+        <p className='spot-card__price'>
           <span style={{ fontWeight: "bold" }}>${spot.price.toFixed(2)}</span> night
         </p>
       </div>

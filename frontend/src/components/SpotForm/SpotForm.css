@@ -5,6 +5,21 @@
   width: 100%;
 }
 
+.spotForm__city-state-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spotForm__state-label,
+.spotForm__city-label {
+  width: 49%;
+}
+
+#comma {
+  top: 35px;
+  position: relative;
+}
+
 .spotForm__input--bottom-margin {
   margin-bottom: 1em;
 }
@@ -35,9 +50,7 @@
 }
 
 /* IDs */
-#city-state-wrapper {
-  display: flex;
-}
+
 
 #price {
   width: 95%;

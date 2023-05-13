@@ -1,17 +1,17 @@
-img {
+.spot-card__image {
     object-fit: cover;
     width: 15em;
     height: 15em;
     border-radius: 15px;
 }
 
-#line-1 {
+.spot-card__line-1 {
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
 }
 
-#spotcard-wrapper {
+.spot-card__wrapper {
     width: fit-content;
     display: flex;
     flex-direction: column;
