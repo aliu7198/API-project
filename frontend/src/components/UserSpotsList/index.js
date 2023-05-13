@@ -12,9 +12,11 @@ const UserSpotsList = () => {
     useEffect(() => {
         dispatch(userSpotsThunk());
     }, [dispatch])
+
     if (!spotsArr.length) return null;
+
     return (
-        <div id="spotsList-wrapper">
+        <div className="spotsList-wrapper">
             {spotsArr.length > 0 && spotsArr.map(spot => (
                 <UserSpotCard key={spot.id} spot={spot}/>
             ))}
