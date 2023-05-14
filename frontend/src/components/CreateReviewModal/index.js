@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
-import { createReviewThunk, getSpotReviewsThunk } from "../../store/reviews";
+import { createReviewThunk } from "../../store/reviews";
 import { singleSpotThunk } from "../../store/spots";
 import StarsInput from "./StarsInput";
 import "./CreateReviewModal.css";
@@ -44,16 +44,17 @@ const CreateReviewModal = ({ spot }) => {
   };
 
   return (
-    <div className="modal__wrapper">
+    <div className="create-review__wrapper">
       <h1>How Was Your Stay?</h1>
       {validationErrors.message && (
         <p className="errors">{validationErrors.message}</p>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="create-review__form">
         <textarea
           value={review}
           onChange={(e) => setReview(e.target.value)}
           placeholder="Leave your review here..."
+          className="create-review__textarea"
         />
         <StarsInput stars={stars} onChange={onChange} />
         <button
