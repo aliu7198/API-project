@@ -1,15 +1,17 @@
-.spotsList__wrapper {
+.spotsList__page-wrapper {
+  margin-top: 70px;
+  padding: 2em 30px;
+}
+
+.spotsList__list-wrapper {
   --gap: 5px;
   --num-cols: 4;
 
-  margin: 70px 0;
-  padding: 1em 30px;
   display: grid;
   grid-template-columns: repeat(var(--num-cols), 1fr);
   gap: var(--gap);
   justify-items: center;
   align-items: center;
-  /* TODO: make columns adjust as browser is resized */
 }
 
 @media screen and (max-width: 1023px) {

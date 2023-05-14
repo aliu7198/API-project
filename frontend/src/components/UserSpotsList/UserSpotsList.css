@@ -1,0 +1,14 @@
+.user-spots__wrapper {
+  margin: 70px 1em;
+  padding: 1em 30px;
+}
+
+.user-spots__create-spot-btn {
+  margin: 5px 0 3em 0;
+  font-size: 14px;
+  color: white;
+  padding: 1em;
+  background-color: grey;
+  box-shadow: 0px 0px 10px lightgrey;
+  border-radius: 10px;
+}

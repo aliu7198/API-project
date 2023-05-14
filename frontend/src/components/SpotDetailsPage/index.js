@@ -57,17 +57,6 @@ const SpotDetailsPage = () => {
                 </h2>{" "}
                 night
               </div>
-              {/* <div className="spot-details__detail-card-rating-reviews">
-                <span>
-                  <i className="fa-solid fa-star"></i>
-                  {+spot.avgStarRating > 0 ? `  ${spot.avgStarRating}` : " New"}
-                </span>
-                <span id="dot">·</span>
-                <span>
-                  {spot.numReviews}{" "}
-                  {spot.numReviews === 1 ? "review" : "reviews"}
-                </span>
-              </div> */}
               <div className={ratingClass}>
                 <span id="star-rating">
                   <i className="fa-solid fa-star" />

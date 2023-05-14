@@ -17,7 +17,6 @@ const SpotReviews = ({ spotId }) => {
     dispatch(singleSpotThunk(spotId));
   }, [dispatch, spotId]);
 
-
   const _reviewDate = (createdAt) => {
     const dateArr = new Date(createdAt).toString().split(" ");
     const res = `${dateArr[1]} ${dateArr[3]}`;
@@ -54,12 +53,14 @@ const SpotReviews = ({ spotId }) => {
               <p id="date">{_reviewDate(review.createdAt)}</p>
               <p>{review.review}</p>
               {user.id === review.User.id ? (
-                <OpenModalButton
-                  buttonText="Delete"
-                  modalComponent={
-                    <DeleteReviewModal review={review} spotId={spotId} />
-                  }
-                />
+                <div className="reviews__delete-btn">
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={
+                      <DeleteReviewModal review={review} spotId={spotId} />
+                    }
+                  />
+                </div>
               ) : (
                 <></>
               )}

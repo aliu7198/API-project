@@ -1,3 +1,13 @@
+.spot-card__buttons button{
+    margin: 5px 5px 0 0;
+    padding: 0.5em;
+    font-size: 14px;
+    color: white;
+    background-color: grey;
+    box-shadow: 0px 0px 10px lightgrey;
+    border-radius: 10px;
+}
+
 .spot-card__image {
     object-fit: cover;
     width: 14em;

@@ -13,14 +13,15 @@
 }
 
 .create-review__wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .create-review-modal__submit-btn {
+  width: 100%;
   padding: 1em;
   margin-top: 5px;
   background-color: red;
@@ -38,5 +39,5 @@
 }
 
 .stars-input {
-    margin: 1em 0;
+  margin: 1em 0;
 }
