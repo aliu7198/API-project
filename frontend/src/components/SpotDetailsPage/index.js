@@ -25,7 +25,7 @@ const SpotDetailsPage = () => {
 
   useEffect(() => {
     dispatch(singleSpotThunk(spotId));
-  }, [dispatch]);
+  }, [dispatch, spotId]);
 
   const handleClick = () => {
     // TODO: Booking feature
@@ -53,7 +53,7 @@ const SpotDetailsPage = () => {
             <div className="spot-details__detail-card-line-1">
               <div>
                 <h2 id="price" style={{ fontWeight: "bold" }}>
-                  ${spot.price.toFixed(2)}
+                  ${Math.round(spot.price*100)/100}
                 </h2>{" "}
                 night
               </div>

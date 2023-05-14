@@ -18,7 +18,7 @@ const UserSpotCard = ({ spot }) => {
           </span>
         </div>
         <p className="spot-card__price">
-          <span style={{ fontWeight: "bold" }}>${spot.price.toFixed(2)}</span>{" "}
+          <span style={{ fontWeight: "bold" }}>${Math.round(spot.price*100)/100}</span>{" "}
           night
         </p>
       </Link>

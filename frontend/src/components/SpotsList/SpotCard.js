@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./SpotCard.css";
 
 const SpotCard = ({ spot }) => {
+  // console.log(Math.round(spot.price*100)/100);
   return (
     <div className="spot-card__wrapper" title={spot.name}>
       <Link to={`/spots/${spot.id}`} style={{ color: "black" }}>
@@ -20,7 +21,7 @@ const SpotCard = ({ spot }) => {
           </span>
         </div>
         <p className="spot-card__price">
-          <span style={{ fontWeight: "bold" }}>${spot.price.toFixed(2)}</span>{" "}
+          <span style={{ fontWeight: "bold" }}>${Math.round(spot.price*100)/100}</span>{" "}
           night
         </p>
       </Link>
