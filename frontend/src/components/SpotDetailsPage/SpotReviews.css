@@ -1,0 +1,22 @@
+.reviews__delete-btn > button {
+    margin: 5px 0;
+    font-size: 14px;
+    color: white;
+    padding: 5px 10px;
+    background-color: grey;
+    box-shadow: 0px 0px 10px lightgrey;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+}
+
+.reviews__review {
+    margin-bottom: 2em;
+}
+
+.reviews__wrapper {
+    margin: 1em 0;
+}
+
+#date {
+    color: grey;
+}

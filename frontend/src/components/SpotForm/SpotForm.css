@@ -1,0 +1,88 @@
+/* ELEMENTS */
+.spotForm__input,
+.spotForm__textarea,
+.spotForm__input--bottom-margin {
+  width: 100%;
+}
+
+.spotForm__btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.spotForm__city-state-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.spotForm__state-label,
+.spotForm__city-label {
+  width: 49%;
+}
+
+.spotForm__input--bottom-margin {
+  margin-bottom: 1em;
+}
+
+.spotForm__form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  max-width: 500px;
+}
+
+.spotForm__form p,
+.spotForm__form h3,
+.spotForm__form > h2 {
+  margin-bottom: 10px;
+}
+
+.spotForm__textarea {
+  background-color: rgb(233, 243, 255);
+  height: 10em;
+}
+
+.spotForm__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+/* MODIFIERS */
+.spotForm--bottom-border {
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 1em;
+}
+
+/* IDs */
+#comma {
+  top: 35px;
+  position: relative;
+}
+
+#country {
+  margin-bottom: 5px;
+}
+
+#price {
+  width: 95%;
+}
+
+#price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#submit-btn {
+  padding: 1em;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 1em;
+  box-shadow: 0px 0px 10px lightgrey;
+}

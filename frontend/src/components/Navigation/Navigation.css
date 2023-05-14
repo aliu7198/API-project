@@ -16,8 +16,33 @@ ul {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px lightgrey solid;
+  background-color: white;
+  /* TODO: fix this*/
+  /* position: fixed shows tiny gap at top of screen */
+  position: fixed;
+}
+
+.nav__home-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 10em;
 }
 
 .hidden {
   display: none;
+}
+
+#logo {
+  width: 40px;
+}
+
+#title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#root {
+  /* WHY DOES DOING THIS ALMOST FIX IT?? */
+  border: 1px solid white;
 }

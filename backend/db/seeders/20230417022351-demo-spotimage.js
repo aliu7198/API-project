@@ -1,48 +1,227 @@
-'use strict';
+"use strict";
 
 let options = {};
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   options.schema = process.env.SCHEMA;
 }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    options.tableName = 'SpotImages';
+  async up(queryInterface, Sequelize) {
+    options.tableName = "SpotImages";
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: 'image/kamadofamilyhome',
-        preview: true
-        },
-        {
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106977361737555988/6cc95fb2-e138-4c8a-b062-adf69682701b.png",
+        preview: true,
+      },
+      {
+        spotId: 1,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106977359879479306/4f53d41b-2ae8-49ad-9c77-21776edb8fbc.png",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106977360600903842/5677f591-aec2-4483-a2b8-cf083265c6ed.png",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106977361016144044/860796bd-9743-4a04-94b8-5bb10396b9a5.png",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106977358977704058/tokyo-hiking-in-oku-tama-166242.png",
+        preview: false,
+      },
+      {
         spotId: 2,
-        url: 'image/zenitsuapartment',
-        preview: true
-        },
-        {
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106959299579744378/2a3adb08-2079-43c3-b16a-040b70dd25b2.png",
+        preview: true,
+      },
+      {
+        spotId: 2,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106959299923685426/d06137d7-b35e-47df-8f70-06fa5bd71371.png",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106959300301168781/93731e9f-d852-4758-bc89-d4603d35e893.png",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106959300607348756/00104852-b8ed-4362-a360-63e4b0b84923.png",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106959301098086400/d8f8944a-d7f1-4053-993a-abc1810efdf6.png",
+        preview: false,
+      },
+      {
         spotId: 3,
-        url: 'image/inosukecave',
-        preview: true
-        },
-        {
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106961585697726594/1000_F_285758408_hWTHOfqHNjrUvvBvFchNHe61ZjgugPND.png",
+        preview: true,
+      },
+      {
+        spotId: 3,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106961587065069748/small-dark-grotto-in-layered-rock-formation-selective-focus.png",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106961585408331876/maxresdefault.png",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106961586838589521/young-wild-boar.png",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106961586079399976/42BF024F-7B61-4F53-BA33-288BEFD36073.png",
+        preview: false,
+      },
+      {
         spotId: 4,
-        url: 'image/tomiokafamilydojo',
-        preview: true
-        },
-        {
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503300914249768/1f3c302c_original.png",
+        preview: true,
+      },
+      {
+        spotId: 4,
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503302214500443/ac66adb5_original.png",
+        preview: false,
+      },
+      {
+        spotId: 4,
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503301396607156/86ce563e_original.png",
+        preview: false,
+      },
+      {
+        spotId: 4,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1105514966922055803/00fdc1f2-9c96-4463-8103-e17c44668589.png",
+        preview: false,
+      },
+      {
+        spotId: 4,
+        url: "https://media.discordapp.net/attachments/1090663657639268482/1105503304085143682/3695eaec_original.png",
+        preview: false,
+      },
+      {
         spotId: 5,
-        url: 'image/butterflymansion',
-        preview: true
-        }
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106977489965830264/0232bf21-d902-43b4-9da9-64ef2c5f449e.png",
+        preview: true,
+      },
+      {
+        spotId: 5,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106972135517331466/photo-1544279772-58facc5d015a.png",
+        preview: false,
+      },
+      {
+        spotId: 5,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106972135907414146/949da369-31e4-4dc6-ae9f-d0b267fe61a6.png",
+        preview: false,
+      },
+      {
+        spotId: 5,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106972136393932891/ccafda40-fcab-4cdc-968e-49968f2bc463.png",
+        preview: false,
+      },
+      {
+        spotId: 5,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106972135211159592/HS-18.png",
+        preview: false,
+      },
+      {
+        spotId: 6,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106955691379396709/Demon-Slayer-Infinity-Castle-at-Ashinomaki-Onsen-Ookawaso-5.png",
+        preview: true,
+      },
+      {
+        spotId: 6,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106955693505908796/sunomata_castle-1024x768.png",
+        preview: false,
+      },
+      {
+        spotId: 6,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106955692167934063/Demon-Slayer-Infinity-Castle-at-Ashinomaki-Onsen-Ookawaso-9.png",
+        preview: false,
+      },
+      {
+        spotId: 6,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106955692553801758/Demon-Slayer-Infinity-Castle-at-Ashinomaki-Onsen-Ookawaso-14.png",
+        preview: false,
+      },
+      {
+        spotId: 6,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106955691807232093/Demon-Slayer-Infinity-Castle-at-Ashinomaki-Onsen-Ookawaso-7-819x1024.png",
+        preview: false,
+      },
+      {
+        spotId: 7,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106987713770565713/dam84VksKX41JC6xbdkj--3--d5jqw.png",
+        preview: true,
+      },
+      {
+        spotId: 7,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106987713363705946/978e8d42-b9de-45ce-856e-565a9b1b9b64.png",
+        preview: false,
+      },
+      {
+        spotId: 7,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1106987714131263568/art-deco-eclectic-living-room-antwerp-antwerp-belgium-by-gert-voorjans-bvba1-1.png",
+        preview: false,
+      },
+      {
+        spotId: 7,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106987715142090762/Dark-Maximalist-1.png",
+        preview: false,
+      },
+      {
+        spotId: 7,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106987714512965733/590f8bf2170ed0ad7488a8607f26f4a9.png",
+        preview: false,
+      },
+      {
+        spotId: 8,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106994613971058688/b5550917-9ac3-48c7-82af-30d7ff1b6cd7.png",
+        preview: true,
+      },
+      {
+        spotId: 8,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106994615007068292/desktop-wallpaper-spaceship-bedroom-spaceship-interior.png",
+        preview: false,
+      },
+      {
+        spotId: 8,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106994614486966272/360_F_551744726_iwKjCX93TVRlLcDVHNlpqe8dzdr6afVq.png",
+        preview: false,
+      },
+      {
+        spotId: 8,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106994614243704883/science-background-fiction-interior-rendering-sci-fi-spaceship-corridors-blue-light-3d-rendering_41470-3736.png",
+        preview: false,
+      },
+      {
+        spotId: 8,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106994614747005050/dark-blue-spaceship-futuristic-interior-with-window-view-on-planet-earth-3d-rendering.png",
+        preview: false,
+      },
     ]);
   },
 
-  async down (queryInterface, Sequelize) {
-    options.tableName = 'SpotImages';
+  async down(queryInterface, Sequelize) {
+    options.tableName = "SpotImages";
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1, 2, 3, 4, 5] }
-    }, {});
-  }
+    return queryInterface.bulkDelete(
+      options,
+      {
+        spotId: { [Op.in]: [1, 2, 3, 4, 5] },
+      },
+      {}
+    );
+  },
 };

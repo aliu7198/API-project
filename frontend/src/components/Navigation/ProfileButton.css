@@ -1,14 +1,29 @@
-i {
-    color: grey;
-}
-
 li {
     margin: 3px 0px;
+    /* TODO: fix cursor being pointer on non-clickable list items */
     cursor: pointer;
     font-size: 14px;
 }
 
-.dropdown {
+.profile-button {
+    border: 1px solid lightgrey;
+    border-radius: 30px;
+    padding: 5px 5px 5px 12px;
+    width: 70px;
+    height: 38px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: grey;
+}
+
+.profile-button:focus {
+    box-shadow: 0px 2px 3px lightgrey;
+}
+
+.profile-dropdown {
     display: flex;
     flex-direction: column;
     min-width: 10em;
@@ -22,32 +37,21 @@ li {
     border-radius: 15px;
 }
 
-.home {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.profile-button {
-    border: 1px solid lightgrey;
-    border-radius: 30px;
-    padding: 5px 5px 5px 12px;
-    width: 73px;
-    height: 36px;
-    background-color: transparent;
+.profile-createSpot-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+    justify-content: space-between;
+    width: 15em;
 }
 
-.profile-button:focus {
-    box-shadow: 0px 2px 3px lightgrey;
+#create-spot-link {
+    font-size: 14px;
+    color: teal;
 }
 
 #dropdown-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 #logout-button {
@@ -60,6 +64,17 @@ li {
     margin-top: 10px;
     font-size: 14px;
 }
+
+#logout-button-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+#manage-spots {
+    border-bottom: 1px solid lightgrey;
+    padding: 5px 0;
+}
+
 
 #user-info {
     border-bottom: 1px solid lightgrey;

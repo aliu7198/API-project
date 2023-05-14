@@ -1,0 +1,21 @@
+.spotsList__page-wrapper {
+  margin-top: 70px;
+  padding: 2em 30px;
+}
+
+.spotsList__list-wrapper {
+  --gap: 5px;
+  --num-cols: 4;
+
+  display: grid;
+  grid-template-columns: repeat(var(--num-cols), 1fr);
+  gap: var(--gap);
+  justify-items: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .spotsList__wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
