@@ -9,7 +9,7 @@
 .spot-details__detail-card-line-1 {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .spot-details__host-description {
