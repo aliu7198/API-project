@@ -17,9 +17,12 @@
   margin-bottom: 10px;
 }
 
-.spotForm__state-label,
 .spotForm__city-label {
-  width: 49%;
+  width: 59%;
+}
+
+.spotForm__state-label {
+  width: 38%;
 }
 
 .spotForm__input--bottom-margin {
@@ -37,6 +40,10 @@
 .spotForm__form h3,
 .spotForm__form > h2 {
   margin-bottom: 10px;
+}
+
+.spotForm__location .errors{
+  margin-left: 10px;
 }
 
 .spotForm__textarea {
@@ -59,8 +66,9 @@
 
 /* IDs */
 #comma {
-  top: 35px;
+  top: 30px;
   position: relative;
+  font-size: 20px;
 }
 
 #country {
