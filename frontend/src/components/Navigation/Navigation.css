@@ -17,8 +17,6 @@ ul {
   align-items: center;
   border-bottom: 1px lightgrey solid;
   background-color: white;
-  /* TODO: fix this*/
-  /* position: fixed shows tiny gap at top of screen */
   position: fixed;
 }
 
@@ -43,6 +41,8 @@ ul {
 }
 
 #root {
+  /* TODO: fix this*/
+  /* navbar shows tiny gap at top of screen when scrolling */
   /* WHY DOES DOING THIS ALMOST FIX IT?? */
   border: 1px solid white;
 }
