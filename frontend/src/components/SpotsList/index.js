@@ -14,7 +14,7 @@ const SpotsList = () => {
     }, [dispatch])
 
     return (
-        <div className="spotsList-wrapper">
+        <div className="spotsList__wrapper">
             {spotsArr.length > 0 && spotsArr.map(spot => (
                 <SpotCard key={spot.id} spot={spot}/>
             ))}

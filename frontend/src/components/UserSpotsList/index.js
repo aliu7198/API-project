@@ -16,7 +16,7 @@ const UserSpotsList = () => {
     if (!spotsArr.length) return null;
 
     return (
-        <div className="spotsList-wrapper">
+        <div className="spotsList__wrapper">
             {spotsArr.length > 0 && spotsArr.map(spot => (
                 <UserSpotCard key={spot.id} spot={spot}/>
             ))}

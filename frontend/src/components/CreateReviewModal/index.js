@@ -44,7 +44,7 @@ const CreateReviewModal = ({ spot }) => {
   };
 
   return (
-    <div className="wrapper">
+    <div className="modal__wrapper">
       <h1>How Was Your Stay?</h1>
       {validationErrors.message && (
         <p className="errors">{validationErrors.message}</p>

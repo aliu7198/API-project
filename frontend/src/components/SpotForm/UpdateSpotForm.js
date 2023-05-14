@@ -84,8 +84,8 @@ const UpdateSpotForm = ({ spot }) => {
               className="spotForm__input"
             />
           </label>
-          <div id="city-state-wrapper">
-            <label htmlFor="city">
+          <div className="spotForm__city-state-wrapper">
+            <label htmlFor="city" className="spotForm__city-label">
               City
               <span className="errors">
                 {hasSubmitted && validationErrors?.city}
@@ -99,8 +99,10 @@ const UpdateSpotForm = ({ spot }) => {
                 className="spotForm__input"
               />
             </label>
-            <div>, </div>
-            <label htmlFor="state">
+            <div>
+              <p id="comma">,</p>{" "}
+            </div>
+            <label htmlFor="state" className="spotForm__state-label">
               State
               <span className="errors">
                 {hasSubmitted && validationErrors?.state}
@@ -171,7 +173,11 @@ const UpdateSpotForm = ({ spot }) => {
           </div>
         </div>
         {/* BONUS TODO: update spot images */}
-        <button type="submit">Update your Spot</button>
+        <div className="spotForm__btn-wrapper">
+          <button id="submit-btn" type="submit">
+            Update your Spot
+          </button>
+        </div>
       </form>
     </div>
   );

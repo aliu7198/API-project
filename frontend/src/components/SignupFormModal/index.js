@@ -50,7 +50,7 @@ function SignupFormModal() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="modal__wrapper">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='email'>

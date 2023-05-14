@@ -29,7 +29,6 @@ const CreateSpotForm = () => {
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
-
   useEffect(() => {
     // HANDLE VALIDATION ERRORS
     const valErrors = {};
@@ -63,7 +62,20 @@ const CreateSpotForm = () => {
     setValidationErrors(valErrors);
     setImageErrors(imgErrors);
     setValidImageURLs(validImages);
-  }, [country, address, city, state, description, name, price, previewImage, imgURL2, imgURL3, imgURL4, imgURL5]);
+  }, [
+    country,
+    address,
+    city,
+    state,
+    description,
+    name,
+    price,
+    previewImage,
+    imgURL2,
+    imgURL3,
+    imgURL4,
+    imgURL5,
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -162,7 +174,9 @@ const CreateSpotForm = () => {
                 className="spotForm__input"
               />
             </label>
-            <div><p id="comma">,</p></div>
+            <div>
+              <p id="comma">,</p>
+            </div>
             <label htmlFor="state" className="spotForm__state-label">
               State
               <span className="errors">
@@ -279,7 +293,11 @@ const CreateSpotForm = () => {
           />
           <div className="errors">{hasSubmitted && imageErrors?.imgURL5}</div>
         </div>
-        <button type="submit">Create Spot</button>
+        <div className="spotForm__btn-wrapper">
+          <button id="submit-btn" type="submit">
+            Create Spot
+          </button>
+        </div>
       </form>
     </div>
   );
