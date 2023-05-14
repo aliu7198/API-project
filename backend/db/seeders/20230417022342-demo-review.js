@@ -43,7 +43,7 @@ module.exports = {
       {
         spotId: 4,
         userId: 2,
-        review: `A haven of elegance and grace. The mansion's exquisite design, tranquil gardens, and cute and caring staff created a sanctuary where I found solace and strength. The Estate's teachings shaped my journey as a Demon Slayer. A true home for growth and self-discovery!`,
+        review: `A haven of elegance and grace. The mansion's exquisite design, tranquil gardens, and cute and caring staff created a sanctuary where I found solace and strength. A true home for growth and self-discovery!`,
         stars: 5,
       },
       {
@@ -79,7 +79,7 @@ module.exports = {
       {
         spotId: 8,
         userId: 12,
-        review: `The Bebop ship served as a trusty companion for our bounty hunting escapades, always getting us where we needed to be. While the amenities were modest, they had a certain nostalgic appeal. Sure, repairs were frequent, and the space was cozy, but it added to the sense of adventure. It may not be the lap of luxury, but the Bebop had its own rough and tumble charm.`,
+        review: `It may not be the lap of luxury, but the Bebop had its own rough and tumble charm. While the amenities were modest, they had a certain nostalgic appeal. Sure, repairs were frequent and the space was cozy, but it added to the sense of adventure.`,
         stars: 4,
       },
     ], {});
