@@ -12,7 +12,7 @@ const SpotCard = ({ spot }) => {
           alt={spot.name}
         />
         <div className="spot-card__line-1">
-          <span style={{ fontWeight: "bold" }}>
+          <span className="spot-card__city-state">
             {spot.city}, {spot.state}
           </span>
           <span>
