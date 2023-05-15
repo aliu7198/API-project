@@ -28,4 +28,10 @@
     flex-direction: column;
     margin-bottom: 2em;
     cursor: pointer;
+    height: 100%;
+}
+
+.spot-card__city-state {
+    font-weight: bold;
+    width: 60%;
 }
