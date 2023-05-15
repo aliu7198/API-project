@@ -1,14 +1,14 @@
 /* TODO */
-.delete-spot-modal__yes-btn {
+.delete-modal__yes-btn {
   background-color: red;
 }
 
-.delete-spot-modal__no-btn {
+.delete-modal__no-btn {
   background-color: grey;
 }
 
-.delete-spot-modal__yes-btn,
-.delete-spot-modal__no-btn {
+.delete-modal__yes-btn,
+.delete-modal__no-btn {
   font-size: 16px;
   color: white;
   width: 100%;

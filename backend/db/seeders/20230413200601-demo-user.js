@@ -17,7 +17,7 @@ module.exports = {
         {
           firstName: "Tanjiro",
           lastName: "Kamado",
-          email: "tanjirou.kamado@demonslayercorps.io",
+          email: "tanjiro.kamado@demonslayercorps.io",
           username: "ChildOfBrightness714",
           hashedPassword: bcrypt.hashSync("HinokamiKagura1"),
         },

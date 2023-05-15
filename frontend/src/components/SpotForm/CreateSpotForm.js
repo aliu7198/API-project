@@ -125,7 +125,7 @@ const CreateSpotForm = () => {
   return (
     <div className="spotForm__wrapper">
       <form onSubmit={handleSubmit} className="spotForm__form">
-        <h2>Create a new Spot</h2>
+        <h2>Create a New Spot</h2>
         <h3>Where's your place located?</h3>
         <p>
           Guests will only get your exact address once they book a reservation
@@ -254,7 +254,7 @@ const CreateSpotForm = () => {
             type="text"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
-            placeholder="Image URL"
+            placeholder="Preview Image URL"
             className="spotForm__input--bottom-margin"
           />
           <div className="errors">

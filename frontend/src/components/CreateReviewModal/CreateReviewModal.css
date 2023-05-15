@@ -10,6 +10,9 @@
   background-color: rgb(233, 243, 255);
   height: 10em;
   margin: 0.5em 0;
+  border-radius: 10px;
+  resize: none;
+  padding: 1em;
 }
 
 .create-review__wrapper {
@@ -17,7 +20,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 25em;
 }
 
 .create-review-modal__submit-btn {

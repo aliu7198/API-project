@@ -49,12 +49,19 @@
 .spotForm__textarea {
   background-color: rgb(233, 243, 255);
   height: 10em;
+  border-radius: 5px;
+  resize: none;
+  padding: 1em;
 }
 
 .spotForm__wrapper {
   display: flex;
   justify-content: center;
   margin-top: 70px;
+}
+
+.spotForm__wrapper .errors {
+  text-align: left;
 }
 
 /* MODIFIERS */
