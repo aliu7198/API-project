@@ -115,7 +115,7 @@ module.exports = {
           lastName: "Tamio",
           email: "enmu.L1@demons.io",
           username: "DreamDemon",
-          hashedPassword: bcrypt.hashSync('mugenmoon1'),
+          hashedPassword: bcrypt.hashSync("mugenmoon1"),
         },
         // 14
         {
@@ -123,7 +123,87 @@ module.exports = {
           lastName: "Kamado",
           email: "nezuko.kamado@demonslayercorps.io",
           username: "D3monGrrl666",
-          hashedPassword: bcrypt.hashSync('explodingblood'),
+          hashedPassword: bcrypt.hashSync("explodingblood"),
+        },
+        // 15
+        {
+          firstName: "Eren",
+          lastName: "Jaeger",
+          email: "eren.jaeger@surveycorps.io",
+          username: "TitanSlayer",
+          hashedPassword: bcrypt.hashSync("freedom123"),
+        },
+        // 16
+        {
+          firstName: "Mikasa",
+          lastName: "Ackerman",
+          email: "mikasa.ackerman@surveycorps.io",
+          username: "BladeMaster",
+          hashedPassword: bcrypt.hashSync("loyalty456"),
+        },
+        // 17
+        {
+          firstName: "Armin",
+          lastName: "Arlert",
+          email: "armin.arlert@surveycorps.io",
+          username: "StrategicMind",
+          hashedPassword: bcrypt.hashSync("courage789"),
+        },
+        // 18
+        {
+          firstName: "Levi",
+          lastName: "Ackerman",
+          email: "levi.ackerman@surveycorps.io",
+          username: "CleanFreak",
+          hashedPassword: bcrypt.hashSync("noregrets1225"),
+        },
+        // 19
+        {
+          firstName: "Hange",
+          lastName: "Zoë",
+          email: "hange.zoe@surveycorps.io",
+          username: "CuriousScientist",
+          hashedPassword: bcrypt.hashSync("titanobsessed123"),
+        },
+        // 20
+        {
+          firstName: "Reiner",
+          lastName: "Braun",
+          email: "reiner.braun@warriors.io",
+          username: "ArmoredTitan7",
+          hashedPassword: bcrypt.hashSync("fortress987"),
+        },
+        // 21
+        {
+          firstName: "Bertholdt",
+          lastName: "Hoover",
+          email: "bertholdt.hoover@warriors.io",
+          username: "ColossalTitan12",
+          hashedPassword: bcrypt.hashSync("innerstruggle789"),
+        },
+        // 22
+        {
+          firstName: "Annie",
+          lastName: "Leonhart",
+          email: "annie.leonhart@warriors.io",
+          username: "FemaleTitan29",
+          hashedPassword: bcrypt.hashSync("isolation654"),
+        },
+        //23
+        {
+          firstName: "Zeke",
+          lastName: "Jaeger",
+          email: "zeke.jaeger@warriors.io",
+          username: "BeastTitan11",
+          hashedPassword: bcrypt.hashSync("royalblood123"),
+        },
+        //24
+        {
+          firstName: "Historia",
+          lastName: "Reiss",
+          email: "historia.reiss@surveycorps.io",
+          username: "RoyalHeir",
+          hashedPassword: bcrypt.hashSync("destiny654"),
         },
       ],
       {}

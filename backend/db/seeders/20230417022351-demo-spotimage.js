@@ -210,6 +210,106 @@ module.exports = {
         url: "https://cdn.discordapp.com/attachments/1105503304521363587/1106994614747005050/dark-blue-spaceship-futuristic-interior-with-window-view-on-planet-earth-3d-rendering.png",
         preview: false,
       },
+      {
+        spotId: 9,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107527702950461530/a57ab9ea-80d5-4ed0-aa15-ce536039778d.png",
+        preview: true,
+      },
+      {
+        spotId: 9,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107527703193735239/42a74e55-7a71-415a-aaef-052ae994b8ff.png",
+        preview: false,
+      },
+      {
+        spotId: 9,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107527703873208380/shutterstock_305138912-1-min-1-scaled-2-1536x1024.png",
+        preview: false,
+      },
+      {
+        spotId: 9,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107527704154230804/8b91678b_original.png",
+        preview: false,
+      },
+      {
+        spotId: 9,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107527703512481853/06735e73-9a79-46a1-a640-0f8cb434c1c8.png",
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107531070926241862/b543f0fe-b8ac-4032-b52d-629b5c2cbed5.png",
+        preview: true,
+      },
+      {
+        spotId: 10,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107531071463104604/3de91036-ad84-416e-867f-8da9e9e76450.png",
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107531072415211530/ef376ce4-5f53-402e-83fb-46e17eff96e1.png",
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107531071966416916/71elOqRPEOL.png",
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107531071186276502/dark-wooden-cellar-door-open-at-bottom-of-old-stone-stairs-bright-sun-light-rays-shining-in.png",
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: "https://media.discordapp.net/attachments/1105503304521363587/1107536650193621043/historicalconcepts_bigcedar_0401.png",
+        preview: true,
+      },
+      {
+        spotId: 11,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107536852950454402/eb427098447484a3ebe3acac99041aaf--wayfarer-pictures-of.png",
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107536650965352448/is-there-explained-from-where-ice-burst-came-from-are-they-v0-izp97lxdepr81.png",
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107536651661627443/cave-of-crystals.png",
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107536651309297714/Tour-Church-2-503x503.png",
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107529836706148442/i4xborz4m0wa1.png",
+        preview: true,
+      },
+      {
+        spotId: 12,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107544280525975622/a4055a7e-2855-4619-a9d3-4fd3e568fa69.png",
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107544281268375592/45e0be7c-1d9d-436b-b55c-483f7fdc06d2.png",
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107544280249159721/3040a079-be85-4c33-99a6-6c8d87a60088.png",
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107529836441911377/1000.png",
+        preview: false,
+      },
     ]);
   },
 
