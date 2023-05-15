@@ -10,6 +10,7 @@ const SpotReviews = ({ spotId }) => {
   const dispatch = useDispatch();
   const reviewsObj = useSelector((state) => state.reviews.spot);
   const user = useSelector((state) => state.session.user);
+  const spotOwner = useSelector((state) => state.spots.singleSpot.Owner);
   const reviewsArr = Object.values(reviewsObj).reverse();
 
   useEffect(() => {
@@ -68,7 +69,9 @@ const SpotReviews = ({ spotId }) => {
           ))}
         </div>
       ) : (
-        <div>Be the first to post a review!</div>
+        <div>
+          {user.id !== spotOwner.id ? (<div>Be the first to post a review!</div>) : <></>}
+        </div>
       )}
     </div>
   );

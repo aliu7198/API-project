@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useHistory } from "react-router-dom";
 import { createReviewThunk } from "../../store/reviews";
 import { singleSpotThunk } from "../../store/spots";
 import StarsInput from "./StarsInput";
 import "./CreateReviewModal.css";
 
 const CreateReviewModal = ({ spot }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [review, setReview] = useState("");
@@ -45,7 +43,7 @@ const CreateReviewModal = ({ spot }) => {
 
   return (
     <div className="create-review__wrapper">
-      <h1>How Was Your Stay?</h1>
+      <h2>How Was Your Stay?</h2>
       {validationErrors.message && (
         <p className="errors">{validationErrors.message}</p>
       )}

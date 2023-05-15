@@ -16,6 +16,8 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const errorsArr = Object.values(errors);
+
   useEffect(() => {
     const errors = {};
     if (username.length < 4) errors.username = "Username must be at least 4 characters"
@@ -50,33 +52,12 @@ function SignupFormModal() {
   };
 
   return (
-    <div className="modal__wrapper">
+    <div className="signup__wrapper">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='email'>
-          Email
-          <input
-            id='email'
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="user@example.io"
-          />
-        </label>
-        {errors.email && <p className="errors">{errors.email}</p>}
-        <label htmlFor="username">
-          Username
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            placeholder="Minimum 4 characters; Maximum 30 characters"
-          />
-        </label>
-        {errors.username && <p className="errors">{errors.username}</p>}
+      {errorsArr.map(error => (
+        <p className="errors">{error}</p>
+      ))}
+      <form onSubmit={handleSubmit} className="signup-form">
         <label htmlFor="first-name">
           First Name
           <input
@@ -88,7 +69,6 @@ function SignupFormModal() {
             placeholder="Required"
           />
         </label>
-        {errors.firstName && <p className="errors">{errors.firstName}</p>}
         <label htmlFor="last-name">
           Last Name
           <input
@@ -100,7 +80,28 @@ function SignupFormModal() {
             placeholder="Required"
           />
         </label>
-        {errors.lastName && <p className="errors">{errors.lastName}</p>}
+        <label htmlFor='email'>
+          Email
+          <input
+            id='email'
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="user@example.io"
+          />
+        </label>
+        <label htmlFor="username">
+          Username
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            placeholder="Minimum 4 characters; Maximum 30 characters"
+          />
+        </label>
         <label htmlFor="password">
           Password
           <input
@@ -112,7 +113,6 @@ function SignupFormModal() {
             placeholder="Minimum 6 characters"
           />
         </label>
-        {errors.password && <p className="errors">{errors.password}</p>}
         <label htmlFor="confirm-password">
           Confirm Password
           <input
@@ -124,9 +124,6 @@ function SignupFormModal() {
             placeholder="Passwords must match"
           />
         </label>
-        {errors.confirmPassword && (
-          <p className="errors">{errors.confirmPassword}</p>
-        )}
         <button
           type="submit"
           className="signup-button"

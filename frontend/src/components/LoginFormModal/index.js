@@ -90,7 +90,7 @@ function LoginFormModal() {
           <span>Log In</span>
         </button>
         <button id="demo-user" onClick={demoLogin}>
-          Demo User
+          Log in as Demo User
         </button>
       </form>
     </div>
