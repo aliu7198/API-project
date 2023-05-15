@@ -310,6 +310,106 @@ module.exports = {
         url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107529836441911377/1000.png",
         preview: false,
       },
+      {
+        spotId: 13,
+        url: "",
+        preview: true,
+      },
+      {
+        spotId: 13,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "",
+        preview: true,
+      },
+      {
+        spotId: 14,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "",
+        preview: true,
+      },
+      {
+        spotId: 15,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "",
+        preview: true,
+      },
+      {
+        spotId: 16,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "",
+        preview: false,
+      },
     ]);
   },
 

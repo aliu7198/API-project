@@ -205,6 +205,38 @@ module.exports = {
           username: "RoyalHeir",
           hashedPassword: bcrypt.hashSync("destiny654"),
         },
+        // 25
+        {
+          firstName: "Masamichi",
+          lastName: "Yaga",
+          email: "masamichi.yaga@jujutsuhigh.jp",
+          username: "WiseSensei",
+          hashedPassword: bcrypt.hashSync("JujutsuMaster456!"),
+        },
+        // 26
+        {
+          firstName: "Yoshinobu",
+          lastName: "Gakuganji",
+          email: "yoshinobu.gakuganji@jujutsuhigh.jp",
+          username: "BigBossPrincipal",
+          hashedPassword: bcrypt.hashSync("Jujutsu123!"),
+        },
+        // 27
+        {
+          firstName: "Satoru",
+          lastName: "Gojo",
+          email: "satoru.gojo@jujutsuhigh.jp",
+          username: "SixEyesSensei",
+          hashedPassword: bcrypt.hashSync("Infinity123@"),
+        },
+        // 28
+        {
+          firstName: "Ryomen",
+          lastName: "Sukuna",
+          email: "ryomen.sukuna@curse.jp",
+          username: "KingofCurses",
+          hashedPassword: bcrypt.hashSync("DomainExpansion789!"),
+        },
       ],
       {}
     );
