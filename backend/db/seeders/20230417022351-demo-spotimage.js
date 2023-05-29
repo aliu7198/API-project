@@ -310,6 +310,106 @@ module.exports = {
         url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107529836441911377/1000.png",
         preview: false,
       },
+      {
+        spotId: 13,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107679665553948823/latest.png",
+        preview: true,
+      },
+      {
+        spotId: 13,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107679666237624480/latest.png",
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107679666501857412/85c3c91fe2c721fba79d3716bb8a7ebc--japanese-dojo-weapon-storage.png",
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107679666766102538/d4e1d8e1-8a12-4c80-b006-1a1b08fe96a9.png",
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107679667202314260/316f608045a779724f0dc82ab564f534.png",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107681519461466214/latest.png",
+        preview: true,
+      },
+      {
+        spotId: 14,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107681519117553724/6cad94de-62b2-425f-a035-94229643ccc6.png",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107681518689714206/frazer-trigg-highresscreenshot00085.png",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107681519864139846/aa62c10a-8448-458c-b381-9d060bf55be6.png",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107681520333881505/9k.png",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107682793061896222/5LYzTBVoS196gvYvw3zjwEG__7Sl1QTxVIk6HFR6VI4.png",
+        preview: true,
+      },
+      {
+        spotId: 15,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107682791660998677/716VgotHR6L.png",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107682792160112650/colorful-hyperspace-light-speed-space-warp-free-video.png",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107682793363873843/Hyperspace-3D-Screensaver.png",
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107682792801837186/640px-Hands-Fingers-Crossed.png",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107685222541164594/51xiorm2hny51.png",
+        preview: true,
+      },
+      {
+        spotId: 16,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107685223698804736/LargePileBones15.png",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107685224504119446/surendra-nath-hansdah-jjk-shrine-2.png",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107685224965472396/a4233519634_10.png",
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: "https://cdn.discordapp.com/attachments/1105503304521363587/1107685224067891220/3d6454e4495d812eea67933d34a65489e8bae0cc-1600x900.png",
+        preview: false,
+      },
     ]);
   },
 
