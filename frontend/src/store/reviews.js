@@ -55,6 +55,7 @@ export const createReviewThunk = (review, spotId, user) => async dispatch => {
         createdReview.ReviewImages = [];
         dispatch(createReviewAction(createdReview));
         dispatch(getSpotReviewsThunk(spotId));
+        dispatch(singleSpotThunk(spotId));
         return createdReview;
     } catch (err) {
         const errors = await err.json();
